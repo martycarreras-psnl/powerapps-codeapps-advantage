@@ -103,8 +103,62 @@
 
   /* ---------- figure ---------- */
   figure.visual { margin:0; border-radius:1.25rem; overflow:hidden; border:1px solid #e2e8f0; background:#fff; box-shadow: 0 30px 60px -30px rgba(10,37,64,0.45); }
-  figure.visual img { display:block; width:100%; height:auto; }
+  figure.visual img { display:block; width:100%; height:auto; cursor: zoom-in; transition: filter .25s ease; }
+  figure.visual img:hover { filter: brightness(1.03); }
   figure.visual figcaption { font-size:.8rem; color:#64748b; padding:.85rem 1.1rem; background:#f8fafc; border-top:1px solid #e2e8f0; text-align:center; }
+
+  /* ---------- lightbox ---------- */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(5,11,23,0.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center;
+    padding: 2rem;
+    opacity: 0; transition: opacity .25s ease;
+  }
+  .lightbox.open { display: flex; opacity: 1; }
+  .lightbox-stage {
+    position: relative; max-width: 100%; max-height: 100%;
+    overflow: hidden; border-radius: .75rem;
+    cursor: zoom-in;
+  }
+  .lightbox-stage.zoomed { cursor: grab; }
+  .lightbox-stage.zoomed:active { cursor: grabbing; }
+  .lightbox img {
+    display: block;
+    max-width: 90vw; max-height: 85vh;
+    width: auto; height: auto;
+    transform-origin: center center;
+    transition: transform .2s ease;
+    user-select: none; -webkit-user-drag: none;
+  }
+  .lightbox-controls {
+    position: fixed; top: 1.25rem; right: 1.25rem;
+    display: flex; gap: .5rem; z-index: 101;
+  }
+  .lightbox-btn {
+    width: 44px; height: 44px;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.20);
+    color: #fff; font-size: 1.1rem; font-weight: 600;
+    display: grid; place-items: center;
+    cursor: pointer; transition: background .2s ease;
+    backdrop-filter: blur(8px);
+  }
+  .lightbox-btn:hover { background: rgba(255,255,255,0.20); }
+  .lightbox-caption {
+    position: fixed; bottom: 1.25rem; left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: .8rem;
+    background: rgba(0,0,0,0.4);
+    padding: .5rem 1rem; border-radius: 9999px;
+    backdrop-filter: blur(8px);
+    z-index: 101;
+    max-width: 90vw; text-align: center;
+  }
+  body.lightbox-open { overflow: hidden; }
 
   /* ---------- accordions ---------- */
   details > summary { list-style:none; cursor:pointer; }
@@ -1085,6 +1139,20 @@
   </div>
 </footer>
 
+<!-- ============== LIGHTBOX ============== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lightbox-controls">
+    <button class="lightbox-btn" id="lb-zoom-out" aria-label="Zoom out" title="Zoom out">−</button>
+    <button class="lightbox-btn" id="lb-zoom-in" aria-label="Zoom in" title="Zoom in">+</button>
+    <button class="lightbox-btn" id="lb-reset" aria-label="Reset zoom" title="Reset">⟳</button>
+    <button class="lightbox-btn" id="lb-close" aria-label="Close" title="Close (Esc)">✕</button>
+  </div>
+  <div class="lightbox-stage" id="lb-stage">
+    <img id="lb-img" alt="" />
+  </div>
+  <div class="lightbox-caption" id="lb-caption"></div>
+</div>
+
 <script>
   // Scroll progress
   const progress = document.getElementById('scrollProgress');
@@ -1134,6 +1202,126 @@
       matrixBtn.textContent = hidden ? 'Show 4 more rows ▾' : 'Show fewer rows ▴';
     });
   }
+
+  // ============== LIGHTBOX (zoom + pan) ==============
+  (() => {
+    const lb       = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lb-img');
+    const lbCap    = document.getElementById('lb-caption');
+    const stage    = document.getElementById('lb-stage');
+    const btnIn    = document.getElementById('lb-zoom-in');
+    const btnOut   = document.getElementById('lb-zoom-out');
+    const btnReset = document.getElementById('lb-reset');
+    const btnClose = document.getElementById('lb-close');
+
+    let scale = 1, tx = 0, ty = 0;
+    let isPanning = false, panStartX = 0, panStartY = 0, startTx = 0, startTy = 0;
+
+    const applyTransform = () => {
+      lbImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+      stage.classList.toggle('zoomed', scale > 1);
+    };
+
+    const reset = () => { scale = 1; tx = 0; ty = 0; applyTransform(); };
+
+    const open = (src, alt, caption) => {
+      lbImg.src = src;
+      lbImg.alt = alt || '';
+      lbCap.textContent = caption || alt || '';
+      lbCap.style.display = lbCap.textContent ? '' : 'none';
+      reset();
+      lb.classList.add('open');
+      document.body.classList.add('lightbox-open');
+    };
+
+    const close = () => {
+      lb.classList.remove('open');
+      document.body.classList.remove('lightbox-open');
+      lbImg.src = '';
+    };
+
+    const zoom = (delta, cx, cy) => {
+      const prev = scale;
+      const next = Math.max(1, Math.min(5, scale + delta));
+      if (next === prev) return;
+      // Zoom toward cursor (or center if not provided)
+      if (cx != null && cy != null) {
+        const rect = lbImg.getBoundingClientRect();
+        const ox = cx - rect.left - rect.width / 2;
+        const oy = cy - rect.top - rect.height / 2;
+        const ratio = next / prev;
+        tx -= ox * (ratio - 1);
+        ty -= oy * (ratio - 1);
+      }
+      scale = next;
+      if (scale === 1) { tx = 0; ty = 0; }
+      applyTransform();
+    };
+
+    // Wire all figure images
+    document.querySelectorAll('figure.visual img').forEach(img => {
+      img.addEventListener('click', () => {
+        const fig = img.closest('figure');
+        const cap = fig ? fig.querySelector('figcaption') : null;
+        open(img.currentSrc || img.src, img.alt, cap ? cap.textContent.trim() : '');
+      });
+    });
+
+    // Controls
+    btnIn.addEventListener('click', () => zoom(0.5));
+    btnOut.addEventListener('click', () => zoom(-0.5));
+    btnReset.addEventListener('click', reset);
+    btnClose.addEventListener('click', close);
+
+    // Click on backdrop closes; click on stage toggles zoom
+    lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+    stage.addEventListener('click', (e) => {
+      if (e.target === lbImg && !isPanning) {
+        if (scale === 1) zoom(1, e.clientX, e.clientY);
+        else reset();
+      }
+    });
+
+    // Wheel to zoom
+    lb.addEventListener('wheel', (e) => {
+      if (!lb.classList.contains('open')) return;
+      e.preventDefault();
+      zoom(e.deltaY < 0 ? 0.25 : -0.25, e.clientX, e.clientY);
+    }, { passive: false });
+
+    // Drag to pan when zoomed
+    lbImg.addEventListener('pointerdown', (e) => {
+      if (scale === 1) return;
+      isPanning = true;
+      panStartX = e.clientX; panStartY = e.clientY;
+      startTx = tx; startTy = ty;
+      lbImg.setPointerCapture(e.pointerId);
+    });
+    lbImg.addEventListener('pointermove', (e) => {
+      if (!isPanning) return;
+      tx = startTx + (e.clientX - panStartX);
+      ty = startTy + (e.clientY - panStartY);
+      applyTransform();
+    });
+    const endPan = (e) => {
+      if (!isPanning) return;
+      isPanning = false;
+      try { lbImg.releasePointerCapture(e.pointerId); } catch {}
+      // Suppress click toggle right after drag
+      setTimeout(() => {}, 0);
+    };
+    lbImg.addEventListener('pointerup', endPan);
+    lbImg.addEventListener('pointercancel', endPan);
+
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === '+' || e.key === '=') zoom(0.25);
+      else if (e.key === '-' || e.key === '_') zoom(-0.25);
+      else if (e.key === '0') reset();
+    });
+  })();
 </script>
 
 </body>
