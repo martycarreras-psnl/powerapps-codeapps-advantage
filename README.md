@@ -1,8 +1,10 @@
 # Power Apps Code Apps Advantage
 
-A single-page strategic brief making the enterprise case for **Microsoft Power Platform Code Apps with Dataverse** over Lovable and bespoke React-on-Azure-SQL approaches — especially at scale (10,000 users, ~1,000 makers) and in regulated industries handling PHI.
+A single-page strategic brief making the enterprise case for **Microsoft Power Platform Code Apps with Dataverse** — especially in regulated industries handling PHI, and especially for organizations that want to build with AI speed while governing with enterprise confidence.
 
-> **One platform. Fewer moving parts. Greater value.**
+> **Build with AI speed. Govern with enterprise confidence.**
+
+Live site: <https://martycarreras-psnl.github.io/powerapps-codeapps-advantage/>
 
 ---
 
@@ -10,42 +12,33 @@ A single-page strategic brief making the enterprise case for **Microsoft Power P
 
 | Path | Purpose |
 |------|---------|
-| `index.html` | The deployed GitHub Pages site. References images from `/images`. Lightweight (~46 KB). |
-| `assets/code-apps-vs-lovable-embedded.html` | A fully self-contained version with all images embedded as base64 data URIs (~13 MB). Open it directly from disk, email it, or drop it on a SharePoint site — no external dependencies. |
-| `images/` | Source PNG visuals used by `index.html`. Web-friendly filenames. |
-| `.nojekyll` | Tells GitHub Pages to skip Jekyll processing and serve the files as-is. |
+| `index.html` | The deployed GitHub Pages site — an 11-chapter narrative microsite. |
+| `images/` | Visuals used by `index.html` (architectural comparison, data security, personas, Dataverse, TCO, unified platform). |
+| `assets/` | Additional figures: hammer/foundation hero, Dataverse secondary, two doors, Code Apps Foundations. |
+| `LICENSE` | MIT. |
 
 ---
 
-## Sections of the brief
+## Chapters
 
-1. **Persona Maturity Model** — Business Innovator → Citizen Developer → Professional Developer → Final Governed Application. Often the same human across all four roles.
-2. **Governance & ALM at Scale** — Configure Managed Environments once, let 1,000 makers self-serve.
-3. **Compliance & Data Residency** — The deciding factor for PHI: Code Apps inside the customer's Azure tenant under a signed Microsoft BAA, vs Lovable on Supabase / AWS where the Terms & Conditions and DPA explicitly prohibit PHI.
-4. **MCP Server Advantage** — Dataverse exposes tables, relationships, and security to agents natively; Azure SQL does not.
-5. **Power Pages BYOC** — External-facing React SPAs for users outside Entra ID, with the same Dataverse security posture.
-6. **Dataverse vs Azure SQL** — Deep capability comparison.
-7. **True Total Cost of Ownership** — Cost complexity, not dollar figures: few components vs many components, one bill vs many bills.
-8. **AI Flexibility & Model Transparency** — Bring any frontier model (Claude, GPT-5, Gemini 2.5, Cursor, Grok, DeepSeek, Qwen) and always know which one you're running.
-9. **Strategic Conclusion** — For governed, compliant, agent-ready scale, Code Apps with Dataverse is the clear winner.
-
----
-
-## Deploy to GitHub Pages
-
-1. Push this repo to GitHub.
-2. In **Settings → Pages**, set the source to **Deploy from a branch**, branch **main**, folder **/ (root)**.
-3. After the first build, the brief will be live at:
-   `https://<your-org>.github.io/power-apps-code-apps-advantage/`
-
-The `.nojekyll` file ensures GitHub Pages serves files exactly as committed (no Jekyll processing of underscores, etc.).
+1. **Maturity Model** — One solution, every persona, one governed pipeline.
+2. **Governance & ALM** — Configure once. Let makers self-serve.
+3. **Compliance Boundary** — Microsoft 365 / Entra ID tenant boundary, signed BAA, regulated workloads supported.
+4. **Agentic AI / MCP** — Dataverse's MCP exposes business semantics (security roles, business rules, choice sets, relationships, audit), not just schema.
+5. **Two Doors** — Internal Code Apps + external Power Pages, one Dataverse foundation.
+6. **Why Dataverse Wins** — Capability matrix vs other databases.
+7. **True Total Cost of Ownership** — Cost complexity, not dollar figures.
+8. **AI Flexibility** — Bring any frontier model from the VS Code ecosystem.
+9. **The Bigger Picture** — Platform coherence wins at scale.
+10. **Foundations** — [PAppsCAFoundations](https://github.com/martycarreras-psnl/PAppsCAFoundations) accelerator.
+11. **Verdict** — When platforms win.
 
 ---
 
 ## Local preview
 
 ```bash
-# Either open index.html directly in a browser…
+# Open directly in a browser…
 open index.html
 
 # …or serve the folder with any static file server:
@@ -55,15 +48,15 @@ python3 -m http.server 8080
 
 ---
 
-## Distributing the standalone version
+## Deploy
 
-When you need a single-file, link-free, offline-safe copy (email attachments, executive briefings, customers without internet), use:
+GitHub Pages is configured to deploy from `main` / root. Pushes to `main` auto-deploy.
 
-```
-assets/code-apps-vs-lovable-embedded.html
-```
+---
 
-Every image is embedded as base64, so the file renders identically with no external dependencies.
+## Disclaimer
+
+This content is **not a formal statement, position, or endorsement from Microsoft**. It is an observational perspective from [Marty Carreras](https://www.linkedin.com/in/carrema/), Microsoft's US Healthcare & Life Sciences AI Business Process and Workforce CTO, offered to help organizations think through enterprise application strategy. Opinions are the author's own.
 
 ---
 
