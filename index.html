@@ -68,18 +68,35 @@
       45deg, #7f1d1d 0 14px, #991b1b 14px 28px
     );
   }
+  nav.sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(10, 37, 64, 0.85);
+  }
 </style>
 </head>
 <body class="font-sans text-brand-slate bg-slate-50">
 
+<!-- ============== PROVOCATIVE BANNER ============== -->
+<div id="top" class="bg-brand-navy text-white text-center py-3 px-6 text-sm md:text-base">
+  <span class="text-amber-300 font-semibold">Sound familiar?</span>
+  Innovators across your org are using personal subscriptions to vibe-coding platforms — and producing great results.
+  <span class="font-semibold">That's awesome… until it's not.</span>
+  <a href="#compliance" class="underline text-amber-300 hover:text-white ml-1">Here's why&nbsp;→</a>
+</div>
+
 <!-- ============== HERO ============== -->
-<header class="gradient-hero text-white">
-  <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+<nav class="sticky-nav gradient-hero text-white">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
     <div class="flex items-center gap-3">
       <div class="w-9 h-9 rounded-lg bg-white/15 grid place-items-center font-bold">PP</div>
       <span class="font-semibold tracking-wide">Power Platform Strategy Brief</span>
     </div>
     <div class="hidden md:flex gap-6 text-sm text-white/80">
+      <a href="#top" class="hover:text-white">Top</a>
       <a href="#maturity" class="hover:text-white">Maturity</a>
       <a href="#governance" class="hover:text-white">Governance</a>
       <a href="#compliance" class="hover:text-white">Compliance</a>
@@ -88,11 +105,12 @@
       <a href="#cost" class="hover:text-white">Cost</a>
       <a href="#verdict" class="hover:text-white">Verdict</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
+<header class="gradient-hero text-white">
   <div class="max-w-7xl mx-auto px-6 pt-12 pb-24">
-    <span class="pill bg-white/15 text-white border border-white/20">Strategic Conversation · Marty &amp; Ara</span>
-    <h1 class="mt-5 text-4xl md:text-6xl font-bold leading-tight max-w-4xl">
+    <h1 class="text-4xl md:text-6xl font-bold leading-tight max-w-4xl">
       Power Platform Code Apps with Dataverse
       <span class="block text-white/80 text-2xl md:text-3xl font-normal mt-3">
         The enterprise-grade choice over Lovable and bespoke React on other databases.
