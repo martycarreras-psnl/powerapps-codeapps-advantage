@@ -121,7 +121,7 @@
     <div class="bg-white rounded-2xl p-6 card-shadow border border-slate-100">
       <div class="text-brand-teal text-sm font-semibold uppercase tracking-wider">Compliance</div>
       <div class="mt-2 text-3xl font-bold text-brand-navy">PHI &amp; BAA-covered</div>
-      <p class="text-sm mt-2">Everything inside the customer’s own Azure tenant under a signed Microsoft BAA. Lovable’s own terms forbid PHI.</p>
+      <p class="text-sm mt-2">Everything inside the customer's own Azure tenant under a signed Microsoft BAA. Lovable's own terms forbid PHI.</p>
     </div>
     <div class="bg-white rounded-2xl p-6 card-shadow border border-slate-100">
       <div class="text-brand-teal text-sm font-semibold uppercase tracking-wider">Agent-ready</div>
@@ -224,7 +224,7 @@
       <strong class="text-brand-navy">From idea to impact:</strong>
       each persona adds value, and together they deliver secure, scalable solutions.
       The same artifact — and often the same human — moves through every stage without a rewrite.
-      The organization doesn’t just build apps; it <em>matures its application development capability</em>
+      The organization doesn't just build apps; it <em>matures its application development capability</em>
       in a governed, scalable way.
     </div>
   </div>
@@ -306,7 +306,7 @@
       <div class="rounded-2xl border-2 border-brand-teal/40 p-6 bg-brand-mist/40">
         <h3 class="font-bold text-brand-navy text-xl">✓ Code Apps with Dataverse</h3>
         <ul class="mt-4 space-y-3 text-sm">
-          <li class="check">Runs entirely <strong>inside the customer’s own Azure tenant</strong></li>
+          <li class="check">Runs entirely <strong>inside the customer's own Azure tenant</strong></li>
           <li class="check">Covered by a <strong>signed Microsoft Business Associate Agreement (BAA)</strong></li>
           <li class="check">PHI, PII, and regulated workloads are explicitly supported</li>
           <li class="check">Sovereign cloud, FedRAMP, HITRUST options available</li>
@@ -319,30 +319,75 @@
         <ul class="mt-4 space-y-3 text-sm">
           <li class="cross">Runs on <strong>Supabase, hosted on AWS</strong> — outside the customer tenant</li>
           <li class="cross">No Microsoft BAA coverage</li>
-          <li class="cross">Lovable’s own legal documents <strong>explicitly prohibit PHI</strong></li>
+          <li class="cross">Lovable's own legal documents <strong>explicitly prohibit PHI</strong></li>
           <li class="cross">Cannot be easily relocated into a customer Azure subscription</li>
         </ul>
       </div>
     </div>
 
     <div class="bg-slate-50 border-t border-slate-200 p-8 md:p-10">
-      <h4 class="font-bold text-brand-navy text-lg mb-4">Direct quotes from Lovable’s own policies</h4>
-      <div class="grid md:grid-cols-2 gap-5">
-        <blockquote class="bg-white p-5 rounded-xl border-l-4 border-red-700 text-sm italic">
-          “The Service is <strong>not designed</strong> to handle, and you must not upload, store, or process
-          Protected Health Information (PHI) as defined under HIPAA.”
-          <div class="not-italic mt-2 text-xs text-slate-500">— Lovable Terms &amp; Conditions</div>
+      <h4 class="font-bold text-brand-navy text-lg mb-2">Direct quotes from Lovable's own legal documents</h4>
+      <p class="text-sm text-slate-600 mb-5">
+        These are not interpretations. They are verbatim from Lovable's published policies — and they are unambiguous.
+      </p>
+
+      <div class="space-y-4">
+
+        <blockquote class="bg-white p-5 rounded-xl border-l-4 border-red-700">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="pill bg-red-100 text-red-800">Terms &amp; Conditions</span>
+            <a href="https://lovable.dev/terms" target="_blank" rel="noopener"
+               class="text-xs text-brand-blue underline hover:text-brand-navy break-all">
+              lovable.dev/terms
+            </a>
+          </div>
+          <p class="text-sm italic">
+            "You agree not to upload, input, or otherwise provide any
+            <strong>protected health information under HIPAA</strong>, or any other sensitive
+            categories of data… Our Services are <strong>not designed to handle that type of data</strong>,
+            and we disclaim all responsibility if you choose to submit it."
+          </p>
         </blockquote>
-        <blockquote class="bg-white p-5 rounded-xl border-l-4 border-red-700 text-sm italic">
-          “Lovable does not enter into Business Associate Agreements and the platform is
-          <strong>not intended for the processing of PHI</strong> or other regulated health data.”
-          <div class="not-italic mt-2 text-xs text-slate-500">— Lovable Data Processing Agreement</div>
+
+        <blockquote class="bg-white p-5 rounded-xl border-l-4 border-red-700">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="pill bg-red-100 text-red-800">Data Processing Agreement · Section 8</span>
+            <a href="https://lovable.dev/data-processing-agreement" target="_blank" rel="noopener"
+               class="text-xs text-brand-blue underline hover:text-brand-navy break-all">
+              lovable.dev/data-processing-agreement
+            </a>
+          </div>
+          <p class="text-sm italic">
+            "The Customer shall <strong>not provide any data to Lovable which is classified as
+            sensitive</strong>. For the avoidance of doubt, the Customer agrees not to upload…
+            any <strong>protected health information under HIPAA</strong>…"
+          </p>
+        </blockquote>
+
+        <blockquote class="bg-white p-5 rounded-xl border-l-4 border-red-700">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="pill bg-red-100 text-red-800">Privacy Policy</span>
+            <a href="https://lovable.dev/privacy" target="_blank" rel="noopener"
+               class="text-xs text-brand-blue underline hover:text-brand-navy break-all">
+              lovable.dev/privacy
+            </a>
+          </div>
+          <p class="text-sm">
+            Explicitly warns against uploading sensitive health data.
+          </p>
         </blockquote>
       </div>
-      <p class="mt-6 text-sm text-slate-600">
-        For a healthcare or life-sciences organization, this single set of clauses ends the conversation.
-        Code Apps is not just preferable — it is the only contractually viable option.
-      </p>
+
+      <div class="mt-6 p-5 rounded-xl bg-brand-navy text-white">
+        <div class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">
+          Microsoft's Key Takeaway for Healthcare &amp; Life Sciences
+        </div>
+        <p class="text-sm">
+          <strong>Microsoft signs a BAA</strong> and keeps all data inside your own Azure tenant.
+          <strong>Lovable does not.</strong> This is written directly in their own legal documents — linked above.
+          For any organization handling PHI, this single fact ends the conversation.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -352,7 +397,7 @@
   <span class="pill bg-brand-mist text-brand-blue">04 · Agentic AI</span>
   <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">The MCP Server Advantage</h2>
   <p class="mt-3 max-w-3xl">
-    In the era of intelligent agents, the data layer must speak the agent’s language.
+    In the era of intelligent agents, the data layer must speak the agent's language.
     Dataverse ships a native <strong>Model Context Protocol (MCP) Server</strong>.
     Azure SQL does not.
   </p>
@@ -362,7 +407,7 @@
       <div class="text-xs uppercase tracking-widest text-white/70">Dataverse</div>
       <h3 class="text-2xl font-bold mt-1">One Connection. Total Context.</h3>
       <ul class="mt-5 space-y-3 text-sm">
-        <li class="check" style="--c:#fff">Agents auto-discover <strong>tables, columns, relationships</strong></li>
+        <li class="check">Agents auto-discover <strong>tables, columns, relationships</strong></li>
         <li class="check">Row-level &amp; column-level security flow through automatically</li>
         <li class="check">Business rules and choice sets are introspectable</li>
         <li class="check">Copilot Studio, M365 Copilot, and custom agents all benefit</li>
@@ -394,7 +439,7 @@
     <div class="mt-10 grid md:grid-cols-3 gap-5">
       <div class="bg-white rounded-2xl p-6 border border-slate-200">
         <h3 class="font-bold text-brand-navy">Modern React, Hosted Securely</h3>
-        <p class="text-sm mt-2">Bring a React single-page app and host it on Power Pages’ secure runtime — no rebuild required.</p>
+        <p class="text-sm mt-2">Bring a React single-page app and host it on Power Pages' secure runtime — no rebuild required.</p>
       </div>
       <div class="bg-white rounded-2xl p-6 border border-slate-200">
         <h3 class="font-bold text-brand-navy">External Identity, Native</h3>
@@ -497,8 +542,8 @@
       Simplicity drives value. Complexity drives cost, risk, and time.
     </p>
     <p class="mt-2 text-sm text-slate-500">
-      We deliberately don’t put dollar signs here — pricing varies by scale, region, and deal.
-      The point is the <strong>shape</strong> of the cost structure: how many moving parts you’re signing up to fund, govern, and operate.
+      We deliberately don't put dollar signs here — pricing varies by scale, region, and deal.
+      The point is the <strong>shape</strong> of the cost structure: how many moving parts you're signing up to fund, govern, and operate.
     </p>
   </div>
 
@@ -663,11 +708,11 @@
 <section class="bg-white border-y border-slate-200 py-20 mb-24">
   <div class="max-w-7xl mx-auto px-6">
     <span class="pill bg-brand-mist text-brand-blue">08 · AI Flexibility &amp; Model Transparency</span>
-    <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">Bring Any Frontier Model — And Always Know Which One You’re Using</h2>
+    <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">Bring Any Frontier Model — And Always Know Which One You're Using</h2>
     <p class="mt-3 max-w-3xl">
       Coding-model leadership changes month to month. With <strong>VS Code + GitHub Enterprise</strong>,
       the developer picks the model — by name, by version — and swaps the moment a stronger one ships.
-      With Lovable, the model is opaque: you never really know what’s under the hood.
+      With Lovable, the model is opaque: you never really know what's under the hood.
     </p>
 
     <!-- Top coding models showcase -->
@@ -738,8 +783,8 @@
       <div class="mt-5 p-4 rounded-lg bg-white border-l-4 border-brand-teal text-sm">
         <strong class="text-brand-navy">The cadence is the point:</strong>
         new frontier coding models drop every few weeks.
-        Within <strong>days</strong> of release, they’re selectable in GitHub Copilot, Cursor, or directly via VS Code extensions.
-        Yesterday’s leader rarely stays the leader for long — and your developers will always know which one they’re running.
+        Within <strong>days</strong> of release, they're selectable in GitHub Copilot, Cursor, or directly via VS Code extensions.
+        Yesterday's leader rarely stays the leader for long — and your developers will always know which one they're running.
       </div>
     </div>
 
@@ -758,9 +803,9 @@
       <div class="rounded-2xl p-7 bg-red-50 border border-red-200">
         <h3 class="font-bold text-red-900 text-xl">Lovable — Opaque Models, Hidden Capability</h3>
         <ul class="mt-4 space-y-2 text-sm">
-          <li class="cross"><strong>No model transparency</strong> — you don’t know which model, or which version, is generating your app</li>
-          <li class="cross">Cannot verify whether you’re on the latest frontier capability or a year-old release</li>
-          <li class="cross">Lovable decides the model roster — switching is not the customer’s decision</li>
+          <li class="cross"><strong>No model transparency</strong> — you don't know which model, or which version, is generating your app</li>
+          <li class="cross">Cannot verify whether you're on the latest frontier capability or a year-old release</li>
+          <li class="cross">Lovable decides the model roster — switching is not the customer's decision</li>
           <li class="cross">No version history, no audit trail of which model produced which artifact</li>
           <li class="cross">Enterprise key management and routing lives outside customer control</li>
           <li class="cross">In a landscape where leadership shifts weekly, opacity is a strategic liability</li>
@@ -771,7 +816,7 @@
     <div class="mt-6 p-5 rounded-xl bg-brand-navy text-white text-sm">
       <strong>Why transparency matters:</strong>
       coding model quality is improving on a near-monthly cadence — Claude, GPT, and Gemini have each held the top of the SWE-bench style leaderboards at different points.
-      If you can’t name the model, you can’t verify you’re using the best one. With Code Apps, you always can.
+      If you can't name the model, you can't verify you're using the best one. With Code Apps, you always can.
     </div>
   </div>
 </section>
@@ -827,7 +872,7 @@
 
     <div class="mt-10 p-6 rounded-2xl bg-white/10 border border-white/20">
       <p class="text-lg md:text-xl italic">
-        “The AI coding tool is just the hammer. The platform is the house.”
+        "The AI coding tool is just the hammer. The platform is the house."
       </p>
       <p class="mt-2 text-sm text-white/70">
         For organizations that value governance, compliance, agent integration, long-term
