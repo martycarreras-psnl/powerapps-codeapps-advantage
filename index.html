@@ -415,7 +415,7 @@
   </div>
 
   <figure class="visual mt-10 reveal">
-    <img src="images/architectural-comparison.png" alt="Architectural Comparison: Code Apps governed by your Microsoft 365 tenant boundary vs Lovable on Supabase / AWS — fragmented, uncontrolled, higher risk" />
+    <img src="images/architectural-comparison.png" alt="Architectural Comparison: Code Apps governed by your Microsoft 365 tenant boundary vs external vibe-coding platforms with third-party hosted data backends — fragmented, uncontrolled, higher risk" />
     <figcaption>Architectural comparison &mdash; build on your platform, keep your data inside your tenant boundary, stay in control.</figcaption>
   </figure>
 
@@ -427,25 +427,27 @@
       </div>
       <ul class="mt-5 space-y-3 text-sm">
         <li class="check">One-time admin setup of pipelines, DLP, and environment groups</li>
-        <li class="check">1,000 makers self-serve deployments — guardrails enforced automatically</li>
+        <li class="check">Makers self-serve deployments &mdash; guardrails enforced automatically</li>
+        <li class="check"><strong>Every repo inherits the same governed foundation</strong> &mdash; instructions, ALM, security, tests, agent guardrails &mdash; from a versioned template (see <a href="#foundations" class="underline text-azure-500 hover:text-ink-800">Chapter 10</a>)</li>
+        <li class="check">Update the foundation once &rarr; every downstream repo can pull it in</li>
         <li class="check">Solution packaging carries data model + UI + logic together</li>
-        <li class="check">Tenant-wide audit, telemetry, and CoE Starter Kit visibility</li>
-        <li class="check">Predictable maker velocity with predictable risk posture</li>
+        <li class="check">Tenant-wide audit, telemetry, and CoE visibility across the fleet</li>
       </ul>
     </article>
 
     <article class="card p-7 reveal" style="background:linear-gradient(160deg,#fef2f2 0%,#ffffff 60%); border-color:rgba(220,38,38,0.25);">
       <div class="flex items-center gap-3">
         <div class="w-11 h-11 rounded-xl bg-red-700 text-white grid place-items-center font-bold text-lg">✕</div>
-        <h3 class="font-bold text-red-900 text-xl">Lovable + Hundreds of Repos</h3>
+        <h3 class="font-bold text-red-900 text-xl">External Vibe Platforms &mdash; Repos Without a Foundation</h3>
       </div>
       <ul class="mt-5 space-y-3 text-sm">
-        <li class="cross">Governance must be built manually, repo by repo</li>
-        <li class="cross">Each Supabase instance is its own snowflake</li>
-        <li class="cross">No tenant-wide DLP, no native solution packaging</li>
+        <li class="cross"><strong>Every repo starts from scratch</strong> &mdash; no inherited instructions, no inherited ALM, no inherited tests</li>
+        <li class="cross">Governance must be re-invented per repo, per team</li>
+        <li class="cross">Each external data backend (hosted Postgres, Firebase, Supabase, etc.) is its own snowflake</li>
+        <li class="cross">No tenant-wide DLP, no native solution packaging, no way to push a fix across the fleet</li>
         <li class="cross"><strong>Estimated +1.5 to +2.5 FTEs</strong> of platform/governance overhead at scale (illustrative, varies by org)</li>
-        <li class="cross">Velocity comes at the cost of compounding tech debt</li>
       </ul>
+      <p class="mt-4 text-xs text-slate-500 italic">The problem isn't repo count &mdash; Code Apps create plenty of repos too. The problem is repos that <em>don't inherit</em> a common foundation.</p>
     </article>
   </div>
 </section>
@@ -467,7 +469,7 @@
     </div>
 
     <figure class="visual mt-10 reveal">
-      <img src="images/data-security.png" alt="Data Must Stay Inside Your Tenant Boundary — Microsoft 365 / Entra ID-governed Power Platform under signed BAA vs Lovable on Supabase / AWS leaking data outside the boundary" />
+      <img src="images/data-security.png" alt="Data Must Stay Inside Your Tenant Boundary — Microsoft 365 / Entra ID-governed Power Platform under signed BAA vs external vibe-coding platforms with third-party hosted data backends leaking data outside the boundary" />
       <figcaption>Data must stay inside your tenant boundary &mdash; protect patient data, preserve compliance, maintain trust.</figcaption>
     </figure>
 
@@ -490,13 +492,13 @@
       <article class="glass p-7 reveal" style="border-color: rgba(252,165,165,0.25);">
         <div class="flex items-center gap-3">
           <div class="w-11 h-11 rounded-xl bg-red-500/20 border border-red-500/40 text-red-300 grid place-items-center font-bold text-lg">✕</div>
-          <h3 class="font-bold text-white text-xl">Outside the Fence</h3>
+          <h3 class="font-bold text-white text-xl">Outside the Boundary</h3>
         </div>
-        <div class="mt-1 text-xs uppercase tracking-widest text-red-300">Lovable on Supabase (AWS)</div>
+        <div class="mt-1 text-xs uppercase tracking-widest text-red-300">External Vibe-Coding Platforms</div>
         <ul class="mt-5 space-y-3 text-sm text-white/85">
-          <li class="cross-dark">Default data layer is <strong class="text-white">Supabase, hosted on AWS</strong> &mdash; outside your Microsoft 365 tenant boundary</li>
+          <li class="cross-dark">Default data layer is a <strong class="text-white">third-party hosted backend</strong> (hosted Postgres, Firebase, Supabase, etc.) on a public cloud you don't control &mdash; outside your Microsoft 365 tenant boundary</li>
           <li class="cross-dark">No Microsoft BAA coverage</li>
-          <li class="cross-dark"><a href="https://lovable.dev/terms" target="_blank" rel="noopener" class="underline hover:text-white">Lovable's own legal documents</a> <strong class="text-white">explicitly prohibit PHI</strong></li>
+          <li class="cross-dark">Many of these platforms' <strong class="text-white">own published terms explicitly prohibit PHI</strong> &mdash; see proof drawer below for one transparent example</li>
           <li class="cross-dark">Cannot be easily relocated into a customer-controlled Microsoft cloud boundary</li>
         </ul>
       </article>
@@ -507,10 +509,17 @@
       <summary class="flex items-center justify-between gap-4">
         <div>
           <div class="text-xs uppercase tracking-widest text-white/60">Proof Drawer</div>
-          <div class="text-lg font-semibold text-white">Verbatim quotes from Lovable's published policies</div>
+          <div class="text-lg font-semibold text-white">Example: verbatim quotes from a leading vibe-coding platform</div>
         </div>
         <div class="chev w-9 h-9 rounded-full bg-white/10 grid place-items-center">▾</div>
       </summary>
+
+      <p class="mt-4 text-sm text-white/70">
+        This pattern is common across the category. We use <strong class="text-white">Lovable</strong> here as a representative example because
+        their terms are particularly explicit. Replit, Bolt, v0, and similar platforms typically carry
+        comparable restrictions in their own published terms &mdash; always verify the current legal documents
+        of any platform you evaluate.
+      </p>
 
       <div class="mt-6 space-y-4">
         <blockquote class="bg-white/5 p-5 rounded-xl border-l-4 border-red-400">
@@ -550,8 +559,10 @@
       <div class="mt-6 p-5 rounded-xl bg-gradient-to-r from-plum-700/40 via-ink-700/40 to-teal-600/40 border border-white/10">
         <div class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Key takeaway for Healthcare &amp; Life Sciences</div>
         <p class="text-sm text-white/90">
-          <strong class="text-white">Microsoft signs a BAA</strong> and keeps all data inside your own Azure tenant.
-          <strong class="text-white">Lovable does not.</strong> This is written directly in their own legal documents — linked above.
+          <strong class="text-white">Microsoft signs a BAA</strong> and keeps your data inside your Microsoft 365 tenant boundary.
+          The <strong class="text-white">external vibe-coding category, broadly, does not</strong> &mdash; and many of these platforms
+          explicitly prohibit PHI in their own published terms. Always confirm the legal posture of any platform
+          before letting regulated data near it.
         </p>
       </div>
     </details>
@@ -821,18 +832,18 @@
       </article>
 
       <article class="glass p-7 reveal" style="border-color: rgba(252,165,165,0.20);">
-        <div class="text-xs uppercase tracking-widest text-red-300 font-semibold">Lovable Approach</div>
+        <div class="text-xs uppercase tracking-widest text-red-300 font-semibold">External Vibe Platform Approach</div>
         <h3 class="text-2xl font-bold text-white mt-1">Many components. Many bills.</h3>
         <p class="mt-2 text-sm text-white/70"><strong class="text-white">What you pay for:</strong> Many components. Many bills.</p>
 
         <div class="mt-5 space-y-2">
           <div class="flex gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
-            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">L</div>
-            <div><div class="font-semibold text-white text-sm">Lovable Platform</div><div class="text-xs text-white/65">Subscription, usage, compute, backups</div></div>
+            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">VP</div>
+            <div><div class="font-semibold text-white text-sm">Vibe-Coding Platform</div><div class="text-xs text-white/65">Subscription, usage, compute, backups</div></div>
           </div>
           <div class="flex gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
-            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">SB</div>
-            <div><div class="font-semibold text-white text-sm">Supabase Hosting</div><div class="text-xs text-white/65">AWS-hosted database, storage, networking</div></div>
+            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">DB</div>
+            <div><div class="font-semibold text-white text-sm">Third-Party Data Backend</div><div class="text-xs text-white/65">Hosted database on AWS / GCP / other public clouds &mdash; storage, networking</div></div>
           </div>
           <div class="flex gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
             <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">GH</div>
@@ -880,7 +891,7 @@
       Coding-model leadership shifts month to month. The <strong>VS Code ecosystem</strong> &mdash;
       GitHub Copilot for first-party Microsoft-supported models, plus Cursor, Cline, and other agent tools
       for the broader frontier &mdash; lets developers pick the model by name and version, and swap the moment
-      a stronger one ships. With Lovable, the model is opaque.
+      a stronger one ships. With most external vibe-coding platforms, the model is opaque.
     </p>
     <p class="mt-3 text-sm text-slate-500 italic">
       Below: a cross-section of leading coding models available across the VS Code ecosystem in 2026.
@@ -962,11 +973,11 @@
       </ul>
     </article>
     <article class="card p-7 reveal" style="background:linear-gradient(160deg,#fef2f2 0%,#ffffff 60%); border-color:rgba(220,38,38,0.20);">
-      <h3 class="font-bold text-red-900 text-xl">Lovable — Opaque Models</h3>
+      <h3 class="font-bold text-red-900 text-xl">External Vibe Platforms &mdash; Opaque Models</h3>
       <ul class="mt-4 space-y-2 text-sm">
-        <li class="cross"><strong>No model transparency</strong> — you don't know which model or version</li>
+        <li class="cross"><strong>No model transparency</strong> &mdash; you don't know which model or version</li>
         <li class="cross">Cannot verify whether you're on the latest frontier capability</li>
-        <li class="cross">Lovable decides the model roster — switching is not yours</li>
+        <li class="cross">The platform vendor decides the model roster &mdash; switching is not yours</li>
         <li class="cross">No version history, no audit trail of which model produced what</li>
         <li class="cross">Enterprise key management lives outside customer control</li>
         <li class="cross">In a landscape that shifts weekly, opacity is a liability</li>
@@ -1093,11 +1104,11 @@
           </ul>
         </div>
         <div class="glass p-7" style="border-color: rgba(252,165,165,0.20);">
-          <h3 class="font-bold text-white text-lg">Reconsider Lovable when:</h3>
+          <h3 class="font-bold text-white text-lg">Reconsider external vibe platforms when:</h3>
           <ul class="mt-4 space-y-2.5 text-sm text-white/85">
             <li class="cross-dark">PHI or other regulated data is in scope</li>
             <li class="cross-dark">You need tenant-wide governance and ALM</li>
-            <li class="cross-dark">Hundreds of repos and Supabase instances are unmanageable</li>
+            <li class="cross-dark">Repos that don't inherit a common foundation become unmanageable</li>
             <li class="cross-dark">Agent integration is a strategic priority</li>
             <li class="cross-dark">Long-term maintainability matters more than first-week velocity</li>
           </ul>
