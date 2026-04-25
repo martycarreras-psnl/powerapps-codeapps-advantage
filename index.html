@@ -3,981 +3,1061 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Power Platform Code Apps with Dataverse — The Enterprise Choice</title>
+<title>Power Apps Code Apps Advantage — Build with AI speed. Govern with enterprise confidence.</title>
+<meta name="description" content="The enterprise-grade choice for governed, compliant, agent-ready application development at scale. Power Apps Code Apps with Dataverse." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: {
       extend: {
         colors: {
-          brand: {
-            navy: '#0A2540',
-            blue: '#0F4C81',
-            teal: '#0E7C7B',
-            sky: '#1F8FFF',
-            mist: '#E6F0F7',
-            slate: '#334155',
-          },
+          ink:   { 950: '#050B17', 900: '#0A1628', 800: '#0A2540', 700: '#0F4C81' },
+          azure: { 500: '#1F8FFF', 400: '#3DA5FF', 300: '#7BC0FF' },
+          teal:  { 600: '#0E7C7B', 500: '#14A6A4' },
+          plum:  { 700: '#5B21B6', 600: '#7C3AED', 500: '#8B5CF6', 300: '#C4B5FD' },
+          mist:  '#E6F0F7',
         },
         fontFamily: {
-          sans: ['Segoe UI', 'Inter', 'system-ui', 'sans-serif'],
+          sans: ['Inter', 'Segoe UI', 'system-ui', 'sans-serif'],
         },
       },
     },
   };
 </script>
 <style>
-  html { scroll-behavior: smooth; }
-  .gradient-hero {
-    background: linear-gradient(135deg, #0A2540 0%, #0F4C81 55%, #0E7C7B 100%);
+  :root {
+    --ink-950:#050B17; --ink-900:#0A1628; --ink-800:#0A2540; --ink-700:#0F4C81;
+    --azure:#1F8FFF; --teal:#14A6A4; --plum:#7C3AED;
   }
-  .card-shadow { box-shadow: 0 10px 30px -12px rgba(15, 76, 129, 0.25); }
-  .pill {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 0.25rem 0.7rem; border-radius: 9999px;
-    font-size: 0.75rem; font-weight: 600;
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+  body { font-family: 'Inter','Segoe UI',system-ui,sans-serif; -webkit-font-smoothing: antialiased; color:#1e293b; }
+
+  /* ---------- gradients ---------- */
+  .grad-hero {
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(124,58,237,0.35), transparent 60%),
+      radial-gradient(900px 500px at 0% 30%, rgba(31,143,255,0.25), transparent 60%),
+      radial-gradient(800px 600px at 100% 100%, rgba(20,166,164,0.20), transparent 60%),
+      linear-gradient(135deg, #050B17 0%, #0A2540 55%, #0F4C81 100%);
   }
-  details > summary { list-style: none; cursor: pointer; }
-  details > summary::-webkit-details-marker { display: none; }
-  .step-line::before {
-    content: ""; position: absolute; left: 1.25rem; top: 2.75rem; bottom: -0.5rem;
-    width: 2px; background: linear-gradient(180deg,#0F4C81,#0E7C7B);
+  .grad-section-dark {
+    background:
+      radial-gradient(800px 400px at 100% 0%, rgba(124,58,237,0.18), transparent 60%),
+      radial-gradient(700px 400px at 0% 100%, rgba(31,143,255,0.18), transparent 60%),
+      linear-gradient(135deg, #0A1628 0%, #0A2540 100%);
   }
-  .step-line:last-child::before { display: none; }
-  table.compare th, table.compare td { vertical-align: top; }
-  figure.visual {
-    margin: 0;
+  .grad-text {
+    background: linear-gradient(90deg, #7BC0FF 0%, #C4B5FD 60%, #14A6A4 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .grad-text-dark {
+    background: linear-gradient(90deg, #0F4C81 0%, #7C3AED 55%, #0E7C7B 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  /* ---------- glass + cards ---------- */
+  .glass {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 1.25rem;
+  }
+  .glass-light {
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(15, 76, 129, 0.10);
+    border-radius: 1.25rem;
+  }
+  .card {
+    background:#fff; border:1px solid #e2e8f0; border-radius: 1.25rem;
+    box-shadow: 0 10px 30px -18px rgba(15,76,129,0.25);
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px -24px rgba(15,76,129,0.30); border-color:#cbd5e1; }
+  .ring-tile {
+    background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(230,240,247,0.6) 100%);
+    border:1px solid rgba(15,76,129,0.10);
     border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 20px 50px -20px rgba(15, 76, 129, 0.35);
-    border: 1px solid #e2e8f0;
-    background: #fff;
   }
-  figure.visual img { display: block; width: 100%; height: auto; }
-  figure.visual figcaption {
-    font-size: 0.8rem; color: #64748b;
-    padding: 0.75rem 1rem;
-    background: #f8fafc;
-    border-top: 1px solid #e2e8f0;
-    text-align: center;
+
+  /* ---------- pill / chip ---------- */
+  .pill {
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.3rem .8rem; border-radius:9999px;
+    font-size:.72rem; font-weight:600; letter-spacing:.04em; text-transform: uppercase;
   }
-  .check::before { content: "✓"; color:#0E7C7B; font-weight:700; margin-right:.4rem;}
-  .cross::before { content: "✕"; color:#B91C1C; font-weight:700; margin-right:.4rem;}
-  .warn-stripe {
-    background-image: repeating-linear-gradient(
-      45deg, #7f1d1d 0 14px, #991b1b 14px 28px
-    );
+  .pill-dark { background: rgba(255,255,255,0.10); color:#fff; border:1px solid rgba(255,255,255,0.18); }
+  .pill-light { background:#E6F0F7; color:#0F4C81; }
+  .pill-plum { background: rgba(124,58,237,0.10); color:#5B21B6; border:1px solid rgba(124,58,237,0.18); }
+
+  /* ---------- check / cross ---------- */
+  .check::before { content:"✓"; color:#0E7C7B; font-weight:800; margin-right:.5rem;}
+  .cross::before { content:"✕"; color:#B91C1C; font-weight:800; margin-right:.5rem;}
+  .check-dark::before { content:"✓"; color:#34d399; font-weight:800; margin-right:.5rem;}
+  .cross-dark::before { content:"✕"; color:#fca5a5; font-weight:800; margin-right:.5rem;}
+
+  /* ---------- figure ---------- */
+  figure.visual { margin:0; border-radius:1.25rem; overflow:hidden; border:1px solid #e2e8f0; background:#fff; box-shadow: 0 30px 60px -30px rgba(10,37,64,0.45); }
+  figure.visual img { display:block; width:100%; height:auto; }
+  figure.visual figcaption { font-size:.8rem; color:#64748b; padding:.85rem 1.1rem; background:#f8fafc; border-top:1px solid #e2e8f0; text-align:center; }
+
+  /* ---------- accordions ---------- */
+  details > summary { list-style:none; cursor:pointer; }
+  details > summary::-webkit-details-marker { display:none; }
+  details[open] .chev { transform: rotate(180deg); }
+  .chev { transition: transform .25s ease; }
+
+  /* ---------- scroll progress ---------- */
+  .scroll-progress {
+    position: fixed; top:0; left:0; height:3px; width:0%;
+    background: linear-gradient(90deg, #1F8FFF 0%, #7C3AED 50%, #14A6A4 100%);
+    z-index: 60; transition: width .1s linear;
   }
-  nav.sticky-nav {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    background: rgba(10, 37, 64, 0.85);
+
+  /* ---------- sticky nav ---------- */
+  nav.chapter-nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    background: rgba(5,11,23,0.78);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  nav.chapter-nav a.active { color:#fff; }
+  nav.chapter-nav a.active::after {
+    content:""; display:block; height:2px;
+    background: linear-gradient(90deg,#1F8FFF,#7C3AED);
+    border-radius:2px; margin-top:6px;
+  }
+
+  /* ---------- fade up ---------- */
+  .reveal { opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in  { opacity:1; transform: translateY(0); }
+
+  /* ---------- carousel ---------- */
+  .carousel { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .carousel > * { scroll-snap-align: start; }
+  .carousel::-webkit-scrollbar { height: 8px; }
+  .carousel::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+  /* ---------- warn stripe ---------- */
+  .warn-stripe { background-image: repeating-linear-gradient(45deg,#7f1d1d 0 14px,#991b1b 14px 28px); }
+
+  /* ---------- soft animated connector dots ---------- */
+  @keyframes pulse-soft { 0%,100% { opacity:.4 } 50% { opacity:1 } }
+  .dot-pulse { animation: pulse-soft 2.4s ease-in-out infinite; }
+
+  /* ---------- divider ---------- */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(15,76,129,0.25), transparent);
+  }
+
+  @media (max-width: 768px) {
+    nav.chapter-nav .chapter-links { display: none; }
   }
 </style>
 </head>
-<body class="font-sans text-brand-slate bg-slate-50">
+<body class="bg-slate-50">
+
+<!-- Scroll progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- ============== PROVOCATIVE BANNER ============== -->
-<div id="top" class="bg-brand-navy text-white text-center py-3 px-6 text-sm md:text-base">
+<div id="top" class="bg-ink-950 text-white text-center py-3 px-6 text-sm md:text-base border-b border-white/10">
   <span class="text-amber-300 font-semibold">Sound familiar?</span>
   Innovators across your org are using personal subscriptions to vibe-coding platforms — and producing great results.
   <span class="font-semibold">That's awesome… until it's not.</span>
   <a href="#compliance" class="underline text-amber-300 hover:text-white ml-1">Here's why&nbsp;→</a>
 </div>
 
-<!-- ============== HERO ============== -->
-<nav class="sticky-nav gradient-hero text-white">
-  <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-lg bg-white/15 grid place-items-center font-bold">PP</div>
-      <span class="font-semibold tracking-wide">Power Apps Code Apps Advantage</span>
-    </div>
-    <div class="hidden md:flex gap-6 text-sm text-white/80">
-      <a href="#top" class="hover:text-white">Top</a>
-      <a href="#maturity" class="hover:text-white">Maturity</a>
-      <a href="#governance" class="hover:text-white">Governance</a>
-      <a href="#compliance" class="hover:text-white">Compliance</a>
-      <a href="#mcp" class="hover:text-white">MCP</a>
-      <a href="#compare" class="hover:text-white">Compare</a>
-      <a href="#cost" class="hover:text-white">Cost</a>
-      <a href="#foundations" class="hover:text-white">Foundations</a>
-      <a href="#verdict" class="hover:text-white">Verdict</a>
+<!-- ============== STICKY NAV ============== -->
+<nav class="chapter-nav text-white">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3 group">
+      <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-azure-500 via-plum-600 to-teal-500 grid place-items-center font-bold shadow-lg">PA</div>
+      <div class="leading-tight">
+        <div class="text-sm font-bold tracking-wide">Power Apps Code Apps Advantage</div>
+        <div class="text-[10px] uppercase tracking-widest text-white/60">Build with AI speed. Govern with enterprise confidence.</div>
+      </div>
+    </a>
+    <div class="chapter-links hidden md:flex gap-5 text-xs font-medium text-white/65">
+      <a href="#top" data-link="top" class="hover:text-white">Top</a>
+      <a href="#maturity" data-link="maturity" class="hover:text-white">Maturity</a>
+      <a href="#governance" data-link="governance" class="hover:text-white">Governance</a>
+      <a href="#compliance" data-link="compliance" class="hover:text-white">Compliance</a>
+      <a href="#mcp" data-link="mcp" class="hover:text-white">MCP</a>
+      <a href="#doors" data-link="doors" class="hover:text-white">Two&nbsp;Doors</a>
+      <a href="#dataverse" data-link="dataverse" class="hover:text-white">Dataverse</a>
+      <a href="#cost" data-link="cost" class="hover:text-white">Cost</a>
+      <a href="#models" data-link="models" class="hover:text-white">Models</a>
+      <a href="#foundations" data-link="foundations" class="hover:text-white">Foundations</a>
+      <a href="#verdict" data-link="verdict" class="hover:text-white">Verdict</a>
     </div>
   </div>
 </nav>
 
-<header class="gradient-hero text-white">
-  <div class="max-w-7xl mx-auto px-6 pt-12 pb-24">
-    <h1 class="text-4xl md:text-6xl font-bold leading-tight max-w-4xl">
-      Power Platform Code Apps with Dataverse
-      <span class="block text-white/80 text-2xl md:text-3xl font-normal mt-3">
-        The enterprise-grade choice over Lovable and bespoke React on other databases.
+<!-- ============== HERO ============== -->
+<header class="grad-hero text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-30 pointer-events-none" style="background-image:radial-gradient(circle at 20% 80%, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+  <div class="max-w-7xl mx-auto px-6 pt-16 pb-24 md:pt-24 md:pb-32 grid lg:grid-cols-12 gap-10 items-center relative">
+    <div class="lg:col-span-7 reveal">
+      <span class="pill pill-dark">
+        <span class="w-1.5 h-1.5 rounded-full bg-azure-400 dot-pulse"></span>
+        Enterprise Narrative · 11 Chapters
       </span>
-    </h1>
-    <p class="mt-6 max-w-3xl text-white/85 text-lg">
-      Why a governed, compliant, agent-ready foundation matters at <strong>10,000 users</strong>,
-      <strong>~1,000 makers</strong>, and especially when <strong>PHI</strong> is in play.
-      The AI coding tool is just the hammer. The platform is the house.
-    </p>
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a href="#verdict" class="bg-white text-brand-navy font-semibold px-5 py-3 rounded-lg hover:bg-brand-mist transition">Jump to Recommendation</a>
-      <a href="#compliance" class="border border-white/40 text-white px-5 py-3 rounded-lg hover:bg-white/10 transition">Read the Compliance Warning</a>
+      <h1 class="mt-6 text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
+        The AI coding tool is just the<br />
+        <span class="grad-text">hammer.</span>
+        The platform is the
+        <span class="grad-text">house.</span>
+      </h1>
+      <p class="mt-6 text-lg md:text-xl text-white/80 max-w-2xl">
+        Build with AI speed. Govern with enterprise confidence.
+        A governed, compliant, agent-ready foundation for <strong class="text-white">10,000 users</strong>,
+        <strong class="text-white">~1,000 makers</strong>, and the moments when <strong class="text-white">PHI</strong> is in play.
+      </p>
+
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#maturity" class="bg-white text-ink-800 font-semibold px-5 py-3 rounded-xl hover:bg-mist transition shadow-lg shadow-azure-500/20">
+          Explore the Enterprise Argument →
+        </a>
+        <a href="#compliance" class="bg-white/10 backdrop-blur border border-white/20 text-white font-semibold px-5 py-3 rounded-xl hover:bg-white/20 transition">
+          See Compliance Boundary
+        </a>
+        <a href="#foundations" class="bg-gradient-to-r from-plum-600 to-azure-500 text-white font-semibold px-5 py-3 rounded-xl hover:opacity-90 transition shadow-lg shadow-plum-600/30">
+          Start with Foundations
+        </a>
+      </div>
+
+      <!-- Stat cards -->
+      <div class="mt-12 grid sm:grid-cols-3 gap-3 max-w-2xl">
+        <div class="glass p-4">
+          <div class="text-[10px] uppercase tracking-widest text-azure-300 font-semibold">Scale</div>
+          <div class="mt-1 text-2xl font-bold">10,000 users</div>
+          <div class="text-xs text-white/60 mt-1">Without 1.5–2.5 extra FTEs</div>
+        </div>
+        <div class="glass p-4">
+          <div class="text-[10px] uppercase tracking-widest text-plum-300 font-semibold">Velocity</div>
+          <div class="mt-1 text-2xl font-bold">1,000 makers</div>
+          <div class="text-xs text-white/60 mt-1">Self-serve, governed</div>
+        </div>
+        <div class="glass p-4">
+          <div class="text-[10px] uppercase tracking-widest text-teal-500 font-semibold" style="color:#5eead4">Trust</div>
+          <div class="mt-1 text-2xl font-bold">PHI · BAA</div>
+          <div class="text-xs text-white/60 mt-1">In your Azure tenant</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 reveal">
+      <figure class="visual rounded-3xl shadow-2xl shadow-plum-700/20">
+        <img src="assets/hammerFoundation.png" alt="The AI coding tool is just the hammer. The platform is the house." />
+      </figure>
     </div>
   </div>
 </header>
 
-<!-- ============== EXEC SUMMARY ============== -->
-<section class="max-w-7xl mx-auto px-6 -mt-16 mb-20">
-  <div class="grid md:grid-cols-3 gap-5">
-    <div class="bg-white rounded-2xl p-6 card-shadow border border-slate-100">
-      <div class="text-brand-teal text-sm font-semibold uppercase tracking-wider">Scale</div>
-      <div class="mt-2 text-3xl font-bold text-brand-navy">10,000 users</div>
-      <p class="text-sm mt-2">~1,000 makers self-serving on a governed platform — without 1.5–2.5 extra FTEs to babysit it.</p>
-    </div>
-    <div class="bg-white rounded-2xl p-6 card-shadow border border-slate-100">
-      <div class="text-brand-teal text-sm font-semibold uppercase tracking-wider">Compliance</div>
-      <div class="mt-2 text-3xl font-bold text-brand-navy">PHI &amp; BAA-covered</div>
-      <p class="text-sm mt-2">Everything inside the customer's own Azure tenant under a signed Microsoft BAA. <a href="https://lovable.dev/terms" target="_blank" rel="noopener" class="underline hover:text-brand-navy">Lovable's own terms</a> forbid PHI.</p>
-    </div>
-    <div class="bg-white rounded-2xl p-6 card-shadow border border-slate-100">
-      <div class="text-brand-teal text-sm font-semibold uppercase tracking-wider">Agent-ready</div>
-      <div class="mt-2 text-3xl font-bold text-brand-navy">Native MCP Server</div>
-      <p class="text-sm mt-2">Dataverse exposes tables, relationships, and security to agents in a single connection. Other databases do not.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============== 1. MATURITY MODEL ============== -->
-<section id="maturity" class="max-w-7xl mx-auto px-6 mb-24">
-  <div class="mb-10">
-    <span class="pill bg-brand-mist text-brand-blue">01 · How Different Personas Work Together</span>
-    <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">A Maturity Model for Application Development</h2>
-    <p class="mt-3 max-w-3xl">
-      Code Apps creates a single, governed pipeline where one artifact matures — without rewrites —
-      from idea to enterprise-ready solution. Each persona adds value, and together they deliver
-      secure, scalable applications.
+<!-- ============== CHAPTER 1 · MATURITY ============== -->
+<section id="maturity" class="max-w-7xl mx-auto px-6 py-24">
+  <div class="reveal">
+    <span class="pill pill-light">Chapter 01 · Maturity Model</span>
+    <h2 class="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight text-ink-800">
+      One artifact. Every persona. <span class="grad-text-dark">No rewrites.</span>
+    </h2>
+    <p class="mt-4 max-w-3xl text-lg text-slate-600">
+      Code Apps create a single, governed pipeline where one artifact matures — without rewrites —
+      from idea to enterprise-ready solution. <strong>Often the same human evolves through every stage.</strong>
     </p>
-
-    <div class="mt-5 inline-flex items-start gap-3 p-4 rounded-xl bg-amber-50 border-l-4 border-amber-400 max-w-3xl">
-      <div class="w-7 h-7 rounded-full bg-amber-400 text-white grid place-items-center font-bold text-sm shrink-0">!</div>
-      <p class="text-sm text-amber-900">
-        <strong>Important:</strong> these personas are <em>roles</em>, not necessarily different people.
-        The same human can grow through every stage — a domain expert who starts in vibe.powerapps.com
-        can absolutely end up in VS Code with GitHub Copilot, shipping through CI/CD. The platform
-        meets each person at their current skill level <em>and</em> grows with them.
-      </p>
-    </div>
-
-    <figure class="visual mt-8">
-      <img src="images/personas.png" alt="How Different Personas Work Together — Business Innovator, Citizen Developer, Professional Developer, Final Governed Application" />
-      <figcaption>From idea to impact — each persona adds value, and together they deliver secure, scalable solutions.</figcaption>
-    </figure>
   </div>
 
-  <div class="bg-white rounded-2xl p-8 card-shadow border border-slate-100">
-    <div class="grid md:grid-cols-4 gap-6">
+  <figure class="visual mt-10 reveal">
+    <img src="images/personas.png" alt="How Different Personas Work Together — Business Innovator, Citizen Developer, Professional Developer, Final Governed Application" />
+    <figcaption>From idea to impact — each persona adds value, and together they deliver secure, scalable solutions.</figcaption>
+  </figure>
 
-      <div class="relative pl-4 border-l-4 border-brand-blue">
-        <div class="flex items-center gap-2">
-          <div class="w-9 h-9 rounded-full bg-brand-blue text-white grid place-items-center font-bold">1</div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-blue">Ideate &amp; Build</span>
-        </div>
-        <h3 class="font-bold text-brand-navy text-lg mt-3">Business Innovator</h3>
-        <p class="text-xs text-slate-500 mt-1">vibe.powerapps.com</p>
-        <ul class="mt-3 text-sm space-y-2">
-          <li class="check">Describe the idea in natural language</li>
-          <li class="check">AI builds the first version</li>
-          <li class="check">Rapidly validate and iterate</li>
-        </ul>
+  <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <article class="card p-6 reveal">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-azure-500 text-white grid place-items-center font-bold">1</div>
+        <span class="text-[10px] font-semibold uppercase tracking-widest text-azure-500">Ideate &amp; Build</span>
       </div>
+      <h3 class="mt-4 font-bold text-ink-800 text-lg">Business Innovator</h3>
+      <div class="text-xs text-slate-500">vibe.powerapps.com</div>
+      <ul class="mt-4 text-sm space-y-2">
+        <li class="check">Describe the idea in natural language</li>
+        <li class="check">AI builds the first version</li>
+        <li class="check">Validate and iterate quickly</li>
+      </ul>
+    </article>
 
-      <div class="relative pl-4 border-l-4 border-brand-blue">
-        <div class="flex items-center gap-2">
-          <div class="w-9 h-9 rounded-full bg-brand-blue text-white grid place-items-center font-bold">2</div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-blue">Refine &amp; Optimize</span>
-        </div>
-        <h3 class="font-bold text-brand-navy text-lg mt-3">Citizen Developer</h3>
-        <p class="text-xs text-slate-500 mt-1">Power Apps Studio</p>
-        <ul class="mt-3 text-sm space-y-2">
-          <li class="check">Enhance UX/UI and workflows</li>
-          <li class="check">Connect to data in Dataverse</li>
-          <li class="check">Test and validate the solution</li>
-        </ul>
+    <article class="card p-6 reveal">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-ink-700 text-white grid place-items-center font-bold">2</div>
+        <span class="text-[10px] font-semibold uppercase tracking-widest text-ink-700">Refine &amp; Optimize</span>
       </div>
+      <h3 class="mt-4 font-bold text-ink-800 text-lg">Innovative Maker</h3>
+      <div class="text-xs text-slate-500">Power Apps Studio</div>
+      <ul class="mt-4 text-sm space-y-2">
+        <li class="check">Enhance UX/UI and workflows</li>
+        <li class="check">Connect to data in Dataverse</li>
+        <li class="check">Test and validate the solution</li>
+      </ul>
+    </article>
 
-      <div class="relative pl-4 border-l-4 border-brand-teal">
-        <div class="flex items-center gap-2">
-          <div class="w-9 h-9 rounded-full bg-brand-teal text-white grid place-items-center font-bold">3</div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-teal">Extend &amp; Integrate</span>
-        </div>
-        <h3 class="font-bold text-brand-navy text-lg mt-3">Professional Developer</h3>
-        <p class="text-xs text-slate-500 mt-1">VS Code + GitHub</p>
-        <ul class="mt-3 text-sm space-y-2">
-          <li class="check">Add custom code and components</li>
-          <li class="check">Integrate with external services</li>
-          <li class="check">Source control, review &amp; CI/CD</li>
-          <li class="check">Enterprise guardrails via <code class="bg-slate-100 px-1 rounded">copilot-instructions.md</code></li>
-        </ul>
+    <article class="card p-6 reveal">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-teal-600 text-white grid place-items-center font-bold">3</div>
+        <span class="text-[10px] font-semibold uppercase tracking-widest text-teal-600">Extend &amp; Integrate</span>
       </div>
+      <h3 class="mt-4 font-bold text-ink-800 text-lg">Advanced Maker</h3>
+      <div class="text-xs text-slate-500">VS Code + GitHub</div>
+      <ul class="mt-4 text-sm space-y-2">
+        <li class="check">Add custom code and components</li>
+        <li class="check">Integrate with external services</li>
+        <li class="check">Source control, review &amp; CI/CD</li>
+        <li class="check">Guardrails via <code class="bg-slate-100 px-1 rounded text-xs">copilot-instructions.md</code></li>
+      </ul>
+    </article>
 
-      <div class="relative pl-4 border-l-4 border-brand-navy bg-gradient-to-br from-brand-mist/60 to-transparent rounded-r-xl">
-        <div class="flex items-center gap-2">
-          <div class="w-9 h-9 rounded-full bg-brand-navy text-white grid place-items-center font-bold">4</div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-navy">Secure · Compliant · Scalable</span>
-        </div>
-        <h3 class="font-bold text-brand-navy text-lg mt-3">Final Governed Application</h3>
-        <p class="text-xs text-slate-500 mt-1">Enterprise-Ready Solution</p>
-        <ul class="mt-3 text-sm space-y-2">
-          <li class="check"><strong>App · Agent · Automation</strong></li>
-          <li class="check">Governed in Microsoft Power Platform</li>
-          <li class="check">Security, compliance &amp; policies</li>
-          <li class="check">Monitor, scale &amp; continuously improve</li>
-        </ul>
+    <article class="card p-6 reveal" style="background:linear-gradient(160deg,#ede9fe 0%,#ffffff 60%); border-color:rgba(124,58,237,0.18);">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-plum-600 text-white grid place-items-center font-bold">4</div>
+        <span class="text-[10px] font-semibold uppercase tracking-widest text-plum-700">Secure · Compliant · Scalable</span>
       </div>
-    </div>
+      <h3 class="mt-4 font-bold text-ink-800 text-lg">Governed Application</h3>
+      <div class="text-xs text-slate-500">Enterprise-Ready Solution</div>
+      <ul class="mt-4 text-sm space-y-2">
+        <li class="check"><strong>App · Agent · Automation</strong></li>
+        <li class="check">Governed in Microsoft Power Platform</li>
+        <li class="check">Security, compliance &amp; policies</li>
+        <li class="check">Monitor, scale &amp; continuously improve</li>
+      </ul>
+    </article>
+  </div>
 
-    <div class="mt-8 p-5 rounded-xl bg-brand-mist border border-brand-blue/20 text-sm">
-      <strong class="text-brand-navy">From idea to impact:</strong>
-      each persona adds value, and together they deliver secure, scalable solutions.
-      The same artifact — and often the same human — moves through every stage without a rewrite.
-      The organization doesn't just build apps; it <em>matures its application development capability</em>
-      in a governed, scalable way.
-    </div>
+  <div class="mt-8 p-6 rounded-2xl bg-gradient-to-r from-mist via-white to-mist border border-azure-300/30 reveal">
+    <p class="text-sm md:text-base text-ink-800">
+      <strong>These are roles, not necessarily different people.</strong>
+      The platform meets each person at their current skill level <em>and</em> grows with them —
+      from vibe.powerapps.com all the way to VS Code + GitHub Copilot, shipping through CI/CD on the same artifact.
+    </p>
   </div>
 </section>
 
-<!-- ============== 2. GOVERNANCE & ALM ============== -->
-<section id="governance" class="bg-white border-y border-slate-200 py-24 mb-24">
-  <div class="max-w-7xl mx-auto px-6">
-    <span class="pill bg-brand-mist text-brand-blue">02 · Governance &amp; ALM</span>
-    <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">Configure once. Let 1,000 makers self-serve.</h2>
-    <p class="mt-3 max-w-3xl">
-      With Code Apps, admins configure ALM pipelines and <strong>Managed Environments</strong> once.
+<div class="divider max-w-7xl mx-auto"></div>
+
+<!-- ============== CHAPTER 2 · GOVERNANCE & ALM ============== -->
+<section id="governance" class="max-w-7xl mx-auto px-6 py-24">
+  <div class="reveal">
+    <span class="pill pill-light">Chapter 02 · Governance &amp; ALM</span>
+    <h2 class="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight text-ink-800">
+      Configure once. <span class="grad-text-dark">Let 1,000 makers self-serve.</span>
+    </h2>
+    <p class="mt-4 max-w-3xl text-lg text-slate-600">
+      Admins configure ALM pipelines and <strong>Managed Environments</strong> once.
       After that, makers ship to dev → test → prod with proper promotion, DLP, and approval gates baked in.
     </p>
+  </div>
 
-    <figure class="visual mt-10 mb-2">
-      <img src="images/architectural-comparison.png" alt="Architectural Comparison: Code Apps inside the customer's Azure tenant vs Lovable on AWS — fragmented, uncontrolled, higher risk" />
-      <figcaption>Architectural comparison — build on your platform, keep your data, stay in control.</figcaption>
-    </figure>
+  <figure class="visual mt-10 reveal">
+    <img src="images/architectural-comparison.png" alt="Architectural Comparison: Code Apps inside the customer's Azure tenant vs Lovable on AWS — fragmented, uncontrolled, higher risk" />
+    <figcaption>Architectural comparison — build on your platform, keep your data, stay in control.</figcaption>
+  </figure>
 
-    <div class="grid md:grid-cols-2 gap-6 mt-10">
-      <div class="rounded-2xl p-7 border-2 border-brand-teal/30 bg-gradient-to-br from-brand-mist to-white">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-brand-teal text-white grid place-items-center font-bold">✓</div>
-          <h3 class="font-bold text-brand-navy text-xl">Code Apps + Managed Environments</h3>
-        </div>
-        <ul class="mt-5 space-y-3 text-sm">
-          <li class="check">One-time admin setup of pipelines, DLP, and environment groups</li>
-          <li class="check">1,000 makers self-serve deployments — guardrails enforced automatically</li>
-          <li class="check">Solution packaging carries data model + UI + logic together</li>
-          <li class="check">Tenant-wide audit, telemetry, and CoE Starter Kit visibility</li>
-          <li class="check">Predictable maker velocity with predictable risk posture</li>
-        </ul>
+  <div class="grid md:grid-cols-2 gap-6 mt-12">
+    <article class="card p-7 reveal" style="background:linear-gradient(160deg,#ecfeff 0%,#ffffff 60%); border-color:rgba(20,166,164,0.30);">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-xl bg-teal-600 text-white grid place-items-center font-bold text-lg">✓</div>
+        <h3 class="font-bold text-ink-800 text-xl">Code Apps + Managed Environments</h3>
       </div>
+      <ul class="mt-5 space-y-3 text-sm">
+        <li class="check">One-time admin setup of pipelines, DLP, and environment groups</li>
+        <li class="check">1,000 makers self-serve deployments — guardrails enforced automatically</li>
+        <li class="check">Solution packaging carries data model + UI + logic together</li>
+        <li class="check">Tenant-wide audit, telemetry, and CoE Starter Kit visibility</li>
+        <li class="check">Predictable maker velocity with predictable risk posture</li>
+      </ul>
+    </article>
 
-      <div class="rounded-2xl p-7 border-2 border-red-200 bg-red-50">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-red-700 text-white grid place-items-center font-bold">✕</div>
-          <h3 class="font-bold text-red-900 text-xl">Lovable + Hundreds of Repos</h3>
-        </div>
-        <ul class="mt-5 space-y-3 text-sm">
-          <li class="cross">Governance must be built manually, repo by repo</li>
-          <li class="cross">Each Supabase instance is its own snowflake</li>
-          <li class="cross">No tenant-wide DLP, no native solution packaging</li>
-          <li class="cross">Estimated <strong>+1.5 to +2.5 FTEs</strong> just to keep order</li>
-          <li class="cross">Velocity comes at the cost of compounding tech debt</li>
-        </ul>
+    <article class="card p-7 reveal" style="background:linear-gradient(160deg,#fef2f2 0%,#ffffff 60%); border-color:rgba(220,38,38,0.25);">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-xl bg-red-700 text-white grid place-items-center font-bold text-lg">✕</div>
+        <h3 class="font-bold text-red-900 text-xl">Lovable + Hundreds of Repos</h3>
       </div>
-    </div>
+      <ul class="mt-5 space-y-3 text-sm">
+        <li class="cross">Governance must be built manually, repo by repo</li>
+        <li class="cross">Each Supabase instance is its own snowflake</li>
+        <li class="cross">No tenant-wide DLP, no native solution packaging</li>
+        <li class="cross">Estimated <strong>+1.5 to +2.5 FTEs</strong> just to keep order</li>
+        <li class="cross">Velocity comes at the cost of compounding tech debt</li>
+      </ul>
+    </article>
   </div>
 </section>
 
-<!-- ============== 3. COMPLIANCE WARNING (DOMINANT) ============== -->
-<section id="compliance" class="max-w-7xl mx-auto px-6 mb-24">
-  <div class="rounded-3xl overflow-hidden card-shadow border border-red-300">
-    <div class="warn-stripe h-3"></div>
-    <div class="bg-red-900 text-white p-10">
-      <div class="flex flex-wrap items-center gap-3">
-        <span class="pill bg-yellow-300 text-red-900">⚠ COMPLIANCE WARNING</span>
-        <span class="pill bg-white/15 border border-white/30">03 · The Deciding Factor</span>
-      </div>
-      <h2 class="mt-4 text-3xl md:text-5xl font-bold leading-tight">
-        Data Residency &amp; HIPAA — This Is Where the Decision Is Made.
+<!-- ============== CHAPTER 3 · COMPLIANCE BOUNDARY ============== -->
+<section id="compliance" class="grad-section-dark text-white py-24 relative overflow-hidden">
+  <div class="absolute inset-0 warn-stripe opacity-[0.03] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6 relative">
+    <div class="reveal">
+      <span class="pill" style="background:rgba(252,165,165,0.15); color:#fecaca; border:1px solid rgba(252,165,165,0.25);">⚠ Chapter 03 · The Boundary</span>
+      <h2 class="mt-4 text-3xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
+        This is not a feature comparison.<br />
+        <span class="grad-text">It is a boundary.</span>
       </h2>
-      <p class="mt-4 text-white/90 max-w-3xl text-lg">
-        For any organization handling PHI, this is not a feature comparison.
-        It is a contractual and regulatory boundary.
+      <p class="mt-5 max-w-3xl text-lg text-white/75">
+        For any organization handling PHI, this single chapter ends the conversation.
+        It's a contractual and regulatory boundary — not a preference.
       </p>
     </div>
 
-    <div class="bg-white p-6 md:p-8 border-b border-slate-200">
-      <figure class="visual">
-        <img src="images/data-security.png" alt="Data Must Stay Inside Your Fence — Microsoft Azure tenant with BAA protection vs Lovable on Supabase / AWS leaking data outside the fence" />
-        <figcaption>Data must stay inside your fence — protect patient data, preserve compliance, maintain trust.</figcaption>
-      </figure>
+    <figure class="visual mt-10 reveal">
+      <img src="images/data-security.png" alt="Data Must Stay Inside Your Fence — Microsoft Azure tenant with BAA protection vs Lovable on Supabase / AWS leaking data outside the fence" />
+      <figcaption>Data must stay inside your fence — protect patient data, preserve compliance, maintain trust.</figcaption>
+    </figure>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-12">
+      <article class="glass p-7 reveal">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-teal-500/20 border border-teal-500/40 text-teal-500 grid place-items-center font-bold text-lg" style="color:#5eead4">✓</div>
+          <h3 class="font-bold text-white text-xl">Inside the Fence</h3>
+        </div>
+        <div class="mt-1 text-xs uppercase tracking-widest text-teal-500" style="color:#5eead4">Code Apps with Dataverse</div>
+        <ul class="mt-5 space-y-3 text-sm text-white/85">
+          <li class="check-dark">Runs entirely <strong class="text-white">inside the customer's own Azure tenant</strong></li>
+          <li class="check-dark">Covered by a <strong class="text-white">signed Microsoft BAA</strong></li>
+          <li class="check-dark">PHI, PII, and regulated workloads explicitly supported</li>
+          <li class="check-dark">Sovereign cloud, FedRAMP, HITRUST options available</li>
+          <li class="check-dark">Data residency, audit, and eDiscovery built in</li>
+        </ul>
+      </article>
+
+      <article class="glass p-7 reveal" style="border-color: rgba(252,165,165,0.25);">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-red-500/20 border border-red-500/40 text-red-300 grid place-items-center font-bold text-lg">✕</div>
+          <h3 class="font-bold text-white text-xl">Outside the Fence</h3>
+        </div>
+        <div class="mt-1 text-xs uppercase tracking-widest text-red-300">Lovable on Supabase (AWS)</div>
+        <ul class="mt-5 space-y-3 text-sm text-white/85">
+          <li class="cross-dark">Runs on <strong class="text-white">Supabase, hosted on AWS</strong> — outside your tenant</li>
+          <li class="cross-dark">No Microsoft BAA coverage</li>
+          <li class="cross-dark"><a href="https://lovable.dev/terms" target="_blank" rel="noopener" class="underline hover:text-white">Lovable's own legal documents</a> <strong class="text-white">explicitly prohibit PHI</strong></li>
+          <li class="cross-dark">Cannot be easily relocated into a customer Azure subscription</li>
+        </ul>
+      </article>
     </div>
 
-    <div class="bg-white p-8 md:p-10 grid md:grid-cols-2 gap-8">
-      <div class="rounded-2xl border-2 border-brand-teal/40 p-6 bg-brand-mist/40">
-        <h3 class="font-bold text-brand-navy text-xl">✓ Code Apps with Dataverse</h3>
-        <ul class="mt-4 space-y-3 text-sm">
-          <li class="check">Runs entirely <strong>inside the customer's own Azure tenant</strong></li>
-          <li class="check">Covered by a <strong>signed Microsoft Business Associate Agreement (BAA)</strong></li>
-          <li class="check">PHI, PII, and regulated workloads are explicitly supported</li>
-          <li class="check">Sovereign cloud, FedRAMP, HITRUST options available</li>
-          <li class="check">Data residency, audit, and eDiscovery built in</li>
-        </ul>
-      </div>
+    <!-- PROOF DRAWER -->
+    <details class="mt-8 glass p-6 reveal group">
+      <summary class="flex items-center justify-between gap-4">
+        <div>
+          <div class="text-xs uppercase tracking-widest text-white/60">Proof Drawer</div>
+          <div class="text-lg font-semibold text-white">Verbatim quotes from Lovable's published policies</div>
+        </div>
+        <div class="chev w-9 h-9 rounded-full bg-white/10 grid place-items-center">▾</div>
+      </summary>
 
-      <div class="rounded-2xl border-2 border-red-300 p-6 bg-red-50">
-        <h3 class="font-bold text-red-900 text-xl">✕ Lovable on Supabase (AWS)</h3>
-        <ul class="mt-4 space-y-3 text-sm">
-          <li class="cross">Runs on <strong>Supabase, hosted on AWS</strong> — outside the customer tenant</li>
-          <li class="cross">No Microsoft BAA coverage</li>
-          <li class="cross"><a href="https://lovable.dev/terms" target="_blank" rel="noopener" class="underline hover:text-red-700">Lovable's own legal documents</a> <strong>explicitly prohibit PHI</strong></li>
-          <li class="cross">Cannot be easily relocated into a customer Azure subscription</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="bg-slate-50 border-t border-slate-200 p-8 md:p-10">
-      <h4 class="font-bold text-brand-navy text-lg mb-2">Direct quotes from Lovable's own legal documents</h4>
-      <p class="text-sm text-slate-600 mb-5">
-        These are not interpretations. They are verbatim from Lovable's published policies — and they are unambiguous.
-      </p>
-
-      <div class="space-y-4">
-
-        <blockquote class="bg-white p-5 rounded-xl border-l-4 border-red-700">
+      <div class="mt-6 space-y-4">
+        <blockquote class="bg-white/5 p-5 rounded-xl border-l-4 border-red-400">
           <div class="flex flex-wrap items-center gap-2 mb-2">
-            <span class="pill bg-red-100 text-red-800">Terms &amp; Conditions</span>
-            <a href="https://lovable.dev/terms" target="_blank" rel="noopener"
-               class="text-xs text-brand-blue underline hover:text-brand-navy break-all">
-              lovable.dev/terms
-            </a>
+            <span class="pill" style="background:rgba(252,165,165,0.18); color:#fecaca;">Terms &amp; Conditions</span>
+            <a href="https://lovable.dev/terms" target="_blank" rel="noopener" class="text-xs text-azure-300 underline hover:text-white">lovable.dev/terms</a>
           </div>
-          <p class="text-sm italic">
+          <p class="text-sm italic text-white/85">
             "You agree not to upload, input, or otherwise provide any
-            <strong>protected health information under HIPAA</strong>, or any other sensitive
-            categories of data… Our Services are <strong>not designed to handle that type of data</strong>,
+            <strong class="text-white">protected health information under HIPAA</strong>, or any other sensitive
+            categories of data… Our Services are <strong class="text-white">not designed to handle that type of data</strong>,
             and we disclaim all responsibility if you choose to submit it."
           </p>
         </blockquote>
 
-        <blockquote class="bg-white p-5 rounded-xl border-l-4 border-red-700">
+        <blockquote class="bg-white/5 p-5 rounded-xl border-l-4 border-red-400">
           <div class="flex flex-wrap items-center gap-2 mb-2">
-            <span class="pill bg-red-100 text-red-800">Data Processing Agreement · Section 8</span>
-            <a href="https://lovable.dev/data-processing-agreement" target="_blank" rel="noopener"
-               class="text-xs text-brand-blue underline hover:text-brand-navy break-all">
-              lovable.dev/data-processing-agreement
-            </a>
+            <span class="pill" style="background:rgba(252,165,165,0.18); color:#fecaca;">Data Processing Agreement · §8</span>
+            <a href="https://lovable.dev/data-processing-agreement" target="_blank" rel="noopener" class="text-xs text-azure-300 underline hover:text-white">lovable.dev/data-processing-agreement</a>
           </div>
-          <p class="text-sm italic">
-            "The Customer shall <strong>not provide any data to Lovable which is classified as
-            sensitive</strong>. For the avoidance of doubt, the Customer agrees not to upload…
-            any <strong>protected health information under HIPAA</strong>…"
+          <p class="text-sm italic text-white/85">
+            "The Customer shall <strong class="text-white">not provide any data to Lovable which is classified as sensitive</strong>.
+            For the avoidance of doubt, the Customer agrees not to upload…
+            any <strong class="text-white">protected health information under HIPAA</strong>…"
           </p>
         </blockquote>
 
-        <blockquote class="bg-white p-5 rounded-xl border-l-4 border-red-700">
+        <blockquote class="bg-white/5 p-5 rounded-xl border-l-4 border-red-400">
           <div class="flex flex-wrap items-center gap-2 mb-2">
-            <span class="pill bg-red-100 text-red-800">Privacy Policy</span>
-            <a href="https://lovable.dev/privacy" target="_blank" rel="noopener"
-               class="text-xs text-brand-blue underline hover:text-brand-navy break-all">
-              lovable.dev/privacy
-            </a>
+            <span class="pill" style="background:rgba(252,165,165,0.18); color:#fecaca;">Privacy Policy</span>
+            <a href="https://lovable.dev/privacy" target="_blank" rel="noopener" class="text-xs text-azure-300 underline hover:text-white">lovable.dev/privacy</a>
           </div>
-          <p class="text-sm">
-            Explicitly warns against uploading sensitive health data.
-          </p>
+          <p class="text-sm text-white/85">Explicitly warns against uploading sensitive health data.</p>
         </blockquote>
       </div>
 
-      <div class="mt-6 p-5 rounded-xl bg-brand-navy text-white">
-        <div class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">
-          Microsoft's Key Takeaway for Healthcare &amp; Life Sciences
-        </div>
-        <p class="text-sm">
-          <strong>Microsoft signs a BAA</strong> and keeps all data inside your own Azure tenant.
-          <strong>Lovable does not.</strong> This is written directly in their own legal documents — linked above.
-          For any organization handling PHI, this single fact ends the conversation.
+      <div class="mt-6 p-5 rounded-xl bg-gradient-to-r from-plum-700/40 via-ink-700/40 to-teal-600/40 border border-white/10">
+        <div class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Key takeaway for Healthcare &amp; Life Sciences</div>
+        <p class="text-sm text-white/90">
+          <strong class="text-white">Microsoft signs a BAA</strong> and keeps all data inside your own Azure tenant.
+          <strong class="text-white">Lovable does not.</strong> This is written directly in their own legal documents — linked above.
         </p>
       </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============== CHAPTER 4 · MCP / AGENTIC AI ============== -->
+<section id="mcp" class="max-w-7xl mx-auto px-6 py-24">
+  <div class="grid lg:grid-cols-12 gap-10 items-center">
+    <div class="lg:col-span-6 reveal">
+      <span class="pill pill-plum">Chapter 04 · Agentic AI</span>
+      <h2 class="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight text-ink-800">
+        One intelligent connection <span class="grad-text-dark">for agents.</span>
+      </h2>
+      <p class="mt-4 text-lg text-slate-600">
+        In the era of intelligent agents, the data layer must speak the agent's language.
+        Dataverse ships a native <strong>Model Context Protocol (MCP) Server</strong>.
+        Other databases do not.
+      </p>
+
+      <div class="mt-8 grid sm:grid-cols-2 gap-4">
+        <div class="card p-5">
+          <div class="text-xs uppercase tracking-widest text-plum-700 font-semibold">Dataverse</div>
+          <div class="font-bold text-ink-800 mt-1">Total context. One connection.</div>
+          <ul class="mt-3 text-sm space-y-2">
+            <li class="check">Auto-discover tables, columns, relationships</li>
+            <li class="check">Row &amp; column security flow through</li>
+            <li class="check">Business rules &amp; choice sets introspectable</li>
+            <li class="check">Copilot Studio, M365 Copilot, custom agents</li>
+          </ul>
+        </div>
+        <div class="card p-5" style="background:linear-gradient(160deg,#fef2f2 0%,#ffffff 60%); border-color:rgba(220,38,38,0.20);">
+          <div class="text-xs uppercase tracking-widest text-red-700 font-semibold">Other Databases</div>
+          <div class="font-bold text-red-900 mt-1">Plumbing without meaning.</div>
+          <ul class="mt-3 text-sm space-y-2">
+            <li class="cross">No native MCP — every integration bespoke</li>
+            <li class="cross">Schema &amp; security hand-described to each agent</li>
+            <li class="cross">Constant drift between schema and prompts</li>
+            <li class="cross">Each new agent restarts the integration cost</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-6 reveal">
+      <figure class="visual">
+        <img src="assets/Dataverse secondary.png" alt="Dataverse with native MCP server connecting agents to tables, relationships, security, and business rules" />
+        <figcaption>Dataverse exposes tables, relationships, metadata, security, and business rules — natively to agents.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<!-- ============== 4. MCP SERVER ============== -->
-<section id="mcp" class="max-w-7xl mx-auto px-6 mb-24">
-  <span class="pill bg-brand-mist text-brand-blue">04 · Agentic AI</span>
-  <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">The MCP Server Advantage</h2>
-  <p class="mt-3 max-w-3xl">
-    In the era of intelligent agents, the data layer must speak the agent's language.
-    Dataverse ships a native <strong>Model Context Protocol (MCP) Server</strong>.
-    Other databases do not.
-  </p>
-
-  <div class="grid md:grid-cols-2 gap-6 mt-10">
-    <div class="rounded-2xl p-7 bg-gradient-to-br from-brand-navy to-brand-blue text-white card-shadow">
-      <div class="text-xs uppercase tracking-widest text-white/70">Dataverse</div>
-      <h3 class="text-2xl font-bold mt-1">One Connection. Total Context.</h3>
-      <ul class="mt-5 space-y-3 text-sm">
-        <li class="check">Agents auto-discover <strong>tables, columns, relationships</strong></li>
-        <li class="check">Row-level &amp; column-level security flow through automatically</li>
-        <li class="check">Business rules and choice sets are introspectable</li>
-        <li class="check">Copilot Studio, M365 Copilot, and custom agents all benefit</li>
-      </ul>
-    </div>
-    <div class="rounded-2xl p-7 bg-white border border-slate-200">
-      <div class="text-xs uppercase tracking-widest text-slate-500">Other Databases</div>
-      <h3 class="text-2xl font-bold mt-1 text-brand-navy">Plumbing Without Meaning</h3>
-      <ul class="mt-5 space-y-3 text-sm">
-        <li class="cross">No native MCP layer — every agent integration is bespoke</li>
-        <li class="cross">Schema, joins, and security must be hand-described to each agent</li>
-        <li class="cross">Drift between schema and agent prompts is constant maintenance</li>
-        <li class="cross">Each new agent restarts the integration cost</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ============== 5. POWER PAGES BYOC ============== -->
-<section class="bg-gradient-to-br from-brand-mist to-white py-20 mb-24 border-y border-slate-200">
+<!-- ============== CHAPTER 5 · TWO DOORS ============== -->
+<section id="doors" class="bg-gradient-to-br from-mist via-white to-mist py-24 border-y border-slate-200">
   <div class="max-w-7xl mx-auto px-6">
-    <span class="pill bg-white text-brand-blue border border-brand-blue/20">05 · External-Facing Apps</span>
-    <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">Power Pages Bring Your Own Code (BYOC)</h2>
-    <p class="mt-3 max-w-3xl">
-      Code Apps cover internal users in Entra ID. <strong>Power Pages BYOC</strong> covers everyone else —
-      customers, patients, partners, suppliers — with the same governed Dataverse foundation.
-    </p>
-
-    <div class="mt-10 grid md:grid-cols-3 gap-5">
-      <div class="bg-white rounded-2xl p-6 border border-slate-200">
-        <h3 class="font-bold text-brand-navy">Modern React, Hosted Securely</h3>
-        <p class="text-sm mt-2">Bring a React single-page app and host it on Power Pages' secure runtime — no rebuild required.</p>
-      </div>
-      <div class="bg-white rounded-2xl p-6 border border-slate-200">
-        <h3 class="font-bold text-brand-navy">External Identity, Native</h3>
-        <p class="text-sm mt-2">B2C, social, and external Entra identities — without giving outside users tenant licenses.</p>
-      </div>
-      <div class="bg-white rounded-2xl p-6 border border-slate-200">
-        <h3 class="font-bold text-brand-navy">Dataverse Security End-to-End</h3>
-        <p class="text-sm mt-2">Row, column, and table-level security apply identically to external users — no parallel auth model.</p>
-      </div>
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <span class="pill pill-plum">Chapter 05 · Internal &amp; External</span>
+      <h2 class="mt-4 text-3xl md:text-6xl font-extrabold tracking-tight text-ink-800 leading-[1.05]">
+        Two Doors. <span class="grad-text-dark">One Foundation.</span>
+      </h2>
+      <p class="mt-4 text-lg text-slate-600">
+        Different audiences. Same data. Same governance. One trusted platform.
+      </p>
     </div>
 
-    <div class="mt-8 p-5 rounded-xl bg-white border-l-4 border-brand-teal text-sm">
-      <strong class="text-brand-navy">Internal &amp; external, on one platform.</strong>
-      Code Apps for the workforce. Power Pages BYOC for everyone outside Entra ID.
-      Same Dataverse, same governance, same compliance posture.
+    <figure class="visual mt-10 reveal">
+      <img src="assets/two doors.png" alt="Two Doors. One Foundation. Internal Workforce with Code Apps and External Ecosystem with Power Pages — both built on Dataverse" />
+    </figure>
+
+    <div class="mt-12 grid md:grid-cols-2 gap-6">
+      <article class="card p-7 reveal">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-azure-500 text-white grid place-items-center font-bold">⌂</div>
+          <h3 class="font-bold text-ink-800 text-xl">Internal Workforce</h3>
+        </div>
+        <div class="text-xs uppercase tracking-widest text-azure-500 mt-1">Code Apps · Entra ID</div>
+        <ul class="mt-5 space-y-3 text-sm">
+          <li class="check">Modern internal apps with React + Dataverse</li>
+          <li class="check">Secure access with Entra ID</li>
+          <li class="check">Built-in governance, DLP, and ALM</li>
+        </ul>
+      </article>
+      <article class="card p-7 reveal" style="background:linear-gradient(160deg,#ede9fe 0%,#ffffff 60%); border-color:rgba(124,58,237,0.20);">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-plum-600 text-white grid place-items-center font-bold">↗</div>
+          <h3 class="font-bold text-ink-800 text-xl">External Ecosystem</h3>
+        </div>
+        <div class="text-xs uppercase tracking-widest text-plum-700 mt-1">Power Pages · BYOC</div>
+        <ul class="mt-5 space-y-3 text-sm">
+          <li class="check">Customers, patients, partners, suppliers</li>
+          <li class="check">Modern React on the secure Power Pages runtime</li>
+          <li class="check">Same Dataverse security, end-to-end</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="mt-6 grid grid-cols-2 md:grid-cols-6 gap-3 reveal">
+      <div class="ring-tile p-4 text-center">
+        <div class="text-xs font-semibold text-azure-500 uppercase tracking-wider">One Platform</div>
+        <div class="text-xs text-slate-600 mt-1">One data foundation</div>
+      </div>
+      <div class="ring-tile p-4 text-center">
+        <div class="text-xs font-semibold text-azure-500 uppercase tracking-wider">One Security</div>
+        <div class="text-xs text-slate-600 mt-1">Identity, roles, access</div>
+      </div>
+      <div class="ring-tile p-4 text-center">
+        <div class="text-xs font-semibold text-azure-500 uppercase tracking-wider">One ALM</div>
+        <div class="text-xs text-slate-600 mt-1">Build once. Govern always.</div>
+      </div>
+      <div class="ring-tile p-4 text-center">
+        <div class="text-xs font-semibold text-azure-500 uppercase tracking-wider">One Truth</div>
+        <div class="text-xs text-slate-600 mt-1">Clean, trusted data</div>
+      </div>
+      <div class="ring-tile p-4 text-center">
+        <div class="text-xs font-semibold text-azure-500 uppercase tracking-wider">One Experience</div>
+        <div class="text-xs text-slate-600 mt-1">Users · Builders · Business</div>
+      </div>
+      <div class="ring-tile p-4 text-center">
+        <div class="text-xs font-semibold text-azure-500 uppercase tracking-wider">One Foundation</div>
+        <div class="text-xs text-slate-600 mt-1">Built to scale &amp; last</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============== 6. DATAVERSE vs AZURE SQL ============== -->
-<section id="compare" class="max-w-7xl mx-auto px-6 mb-24">
-  <span class="pill bg-brand-mist text-brand-blue">06 · Deep Comparison</span>
-  <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">Dataverse vs Other Databases — Where the Real Value Lives</h2>
-  <p class="mt-3 max-w-3xl">
-    A traditional database is just a database. Dataverse is a governed business application platform.
-    The difference shows up in nearly every dimension that matters at enterprise scale.
-  </p>
+<!-- ============== CHAPTER 6 · DATAVERSE WINS ============== -->
+<section id="dataverse" class="max-w-7xl mx-auto px-6 py-24">
+  <div class="reveal">
+    <span class="pill pill-light">Chapter 06 · Why Dataverse Wins</span>
+    <h2 class="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight text-ink-800">
+      A traditional database is just a database. <span class="grad-text-dark">Dataverse is a platform.</span>
+    </h2>
+    <p class="mt-4 max-w-3xl text-lg text-slate-600">
+      Dataverse is a governed business application platform.
+      The difference shows up in nearly every dimension that matters at enterprise scale.
+    </p>
+  </div>
 
-  <figure class="visual mt-8">
+  <figure class="visual mt-10 reveal">
     <img src="images/dataverse.png" alt="Why Dataverse Wins for Intelligent Applications — Dataverse + Code Apps with native MCP server vs React + Other Databases with fragmented integration services" />
     <figcaption>Why Dataverse wins for intelligent applications — unified platform, native intelligence, enterprise ready.</figcaption>
   </figure>
 
-  <div class="overflow-x-auto mt-8 rounded-2xl border border-slate-200 card-shadow bg-white">
-    <table class="compare w-full text-sm">
-      <thead class="bg-brand-navy text-white text-left">
-        <tr>
-          <th class="p-4 w-1/4">Capability</th>
-          <th class="p-4">Dataverse</th>
-          <th class="p-4">Other Databases</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-slate-200">
-        <tr>
-          <td class="p-4 font-semibold text-brand-navy">Row &amp; column security</td>
-          <td class="p-4"><span class="check"></span>Built-in security roles, business units, hierarchical, field-level</td>
-          <td class="p-4"><span class="cross"></span>Custom-built with views, RLS policies, and app-tier code</td>
-        </tr>
-        <tr class="bg-slate-50">
-          <td class="p-4 font-semibold text-brand-navy">MCP Server</td>
-          <td class="p-4"><span class="check"></span>Native — agents auto-understand schema and security</td>
-          <td class="p-4"><span class="cross"></span>None — every agent integration is hand-rolled</td>
-        </tr>
-        <tr>
-          <td class="p-4 font-semibold text-brand-navy">Agent intelligence</td>
-          <td class="p-4"><span class="check"></span>Copilot Studio + M365 Copilot speak Dataverse natively</td>
-          <td class="p-4"><span class="cross"></span>Requires bespoke prompt engineering and middleware</td>
-        </tr>
-        <tr class="bg-slate-50">
-          <td class="p-4 font-semibold text-brand-navy">Business logic location</td>
-          <td class="p-4"><span class="check"></span>Centralized in the platform: business rules, plug-ins, flows</td>
-          <td class="p-4"><span class="cross"></span>Scattered across app code, stored procs, triggers, and services</td>
-        </tr>
-        <tr>
-          <td class="p-4 font-semibold text-brand-navy">ALM &amp; solution packaging</td>
-          <td class="p-4"><span class="check"></span>First-class solutions carry schema + UI + logic together</td>
-          <td class="p-4"><span class="cross"></span>DACPAC + custom scripts + bespoke release pipelines</td>
-        </tr>
-        <tr class="bg-slate-50">
-          <td class="p-4 font-semibold text-brand-navy">Governance</td>
-          <td class="p-4"><span class="check"></span>Managed Environments, DLP, CoE Starter Kit out of the box</td>
-          <td class="p-4"><span class="cross"></span>Hand-built per database / per subscription</td>
-        </tr>
-        <tr>
-          <td class="p-4 font-semibold text-brand-navy">Licensing inclusion</td>
-          <td class="p-4"><span class="check"></span>Included in Power Platform / many M365 plans</td>
-          <td class="p-4"><span class="cross"></span>Separate Azure consumption + DTUs + storage + backup</td>
-        </tr>
-        <tr class="bg-slate-50">
-          <td class="p-4 font-semibold text-brand-navy">Audit capabilities</td>
-          <td class="p-4"><span class="check"></span>Field-level audit, change tracking, eDiscovery built in</td>
-          <td class="p-4"><span class="cross"></span>Custom audit tables and triggers, or third-party tooling</td>
-        </tr>
-        <tr>
-          <td class="p-4 font-semibold text-brand-navy">Operational overhead</td>
-          <td class="p-4"><span class="check"></span>Platform-managed scale, HA, patching, backup</td>
-          <td class="p-4"><span class="cross"></span>DBA effort for performance tuning, indexing, scaling</td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- Comparison matrix: 5 visible, expand for full -->
+  <div class="mt-10 rounded-2xl border border-slate-200 overflow-hidden card-shadow bg-white reveal">
+    <div class="grid grid-cols-12 bg-ink-800 text-white text-xs uppercase tracking-widest font-semibold">
+      <div class="p-4 col-span-4">Capability</div>
+      <div class="p-4 col-span-4 border-l border-white/10">Dataverse</div>
+      <div class="p-4 col-span-4 border-l border-white/10">Other Databases</div>
+    </div>
+
+    <div id="matrix-visible">
+      <!-- Row 1 -->
+      <div class="grid grid-cols-12 text-sm border-t border-slate-100">
+        <div class="p-4 col-span-4 font-semibold text-ink-800">Row &amp; column security</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="check"></span>Built-in security roles, business units, hierarchical, field-level</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="cross"></span>Custom-built with views, RLS policies, and app-tier code</div>
+      </div>
+      <!-- Row 2 -->
+      <div class="grid grid-cols-12 text-sm border-t border-slate-100 bg-slate-50/60">
+        <div class="p-4 col-span-4 font-semibold text-ink-800">MCP Server</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="check"></span>Native — agents auto-understand schema and security</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="cross"></span>None — every agent integration is hand-rolled</div>
+      </div>
+      <!-- Row 3 -->
+      <div class="grid grid-cols-12 text-sm border-t border-slate-100">
+        <div class="p-4 col-span-4 font-semibold text-ink-800">Agent intelligence</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="check"></span>Copilot Studio + M365 Copilot speak Dataverse natively</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="cross"></span>Requires bespoke prompt engineering and middleware</div>
+      </div>
+      <!-- Row 4 -->
+      <div class="grid grid-cols-12 text-sm border-t border-slate-100 bg-slate-50/60">
+        <div class="p-4 col-span-4 font-semibold text-ink-800">Business logic location</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="check"></span>Centralized: business rules, plug-ins, flows</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="cross"></span>Scattered across app code, stored procs, triggers, services</div>
+      </div>
+      <!-- Row 5 -->
+      <div class="grid grid-cols-12 text-sm border-t border-slate-100">
+        <div class="p-4 col-span-4 font-semibold text-ink-800">ALM &amp; solution packaging</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="check"></span>First-class solutions carry schema + UI + logic together</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="cross"></span>DACPAC + custom scripts + bespoke release pipelines</div>
+      </div>
+    </div>
+
+    <div id="matrix-rest" class="hidden">
+      <!-- Row 6 -->
+      <div class="grid grid-cols-12 text-sm border-t border-slate-100 bg-slate-50/60">
+        <div class="p-4 col-span-4 font-semibold text-ink-800">Governance</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="check"></span>Managed Environments, DLP, CoE Starter Kit out of the box</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="cross"></span>Hand-built per database / per subscription</div>
+      </div>
+      <!-- Row 7 -->
+      <div class="grid grid-cols-12 text-sm border-t border-slate-100">
+        <div class="p-4 col-span-4 font-semibold text-ink-800">Licensing inclusion</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="check"></span>Included in Power Platform / many M365 plans</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="cross"></span>Separate consumption + DTUs + storage + backup</div>
+      </div>
+      <!-- Row 8 -->
+      <div class="grid grid-cols-12 text-sm border-t border-slate-100 bg-slate-50/60">
+        <div class="p-4 col-span-4 font-semibold text-ink-800">Audit capabilities</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="check"></span>Field-level audit, change tracking, eDiscovery built in</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="cross"></span>Custom audit tables and triggers, or third-party tooling</div>
+      </div>
+      <!-- Row 9 -->
+      <div class="grid grid-cols-12 text-sm border-t border-slate-100">
+        <div class="p-4 col-span-4 font-semibold text-ink-800">Operational overhead</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="check"></span>Platform-managed scale, HA, patching, backup</div>
+        <div class="p-4 col-span-4 border-l border-slate-100"><span class="cross"></span>DBA effort for performance tuning, indexing, scaling</div>
+      </div>
+    </div>
+
+    <button id="matrix-toggle" class="w-full py-4 text-sm font-semibold text-azure-500 hover:bg-mist transition border-t border-slate-100">
+      Show 4 more rows ▾
+    </button>
   </div>
 </section>
 
-<!-- ============== 7. COST COMPLEXITY ============== -->
-<section id="cost" class="max-w-7xl mx-auto px-6 mb-24">
-  <div class="text-center max-w-3xl mx-auto">
-    <span class="pill bg-brand-mist text-brand-blue">07 · True Total Cost of Ownership</span>
-    <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">Cost Complexity Comparison</h2>
-    <p class="mt-3 text-lg italic text-slate-600">
-      Simplicity drives value. Complexity drives cost, risk, and time.
-    </p>
-    <p class="mt-2 text-sm text-slate-500">
-      We deliberately don't put dollar signs here — pricing varies by scale, region, and deal.
-      The point is the <strong>shape</strong> of the cost structure: how many moving parts you're signing up to fund, govern, and operate.
+<!-- ============== CHAPTER 7 · TCO ============== -->
+<section id="cost" class="grad-section-dark text-white py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <span class="pill pill-dark">Chapter 07 · True Total Cost of Ownership</span>
+      <h2 class="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight">
+        The hidden cost of <span class="grad-text">tool sprawl.</span>
+      </h2>
+      <p class="mt-4 text-lg text-white/75 italic">Simplicity drives value. Complexity drives cost, risk, and time.</p>
+      <p class="mt-2 text-sm text-white/55">We deliberately don't put dollar signs here — pricing varies by scale, region, and deal. The point is the <strong class="text-white">shape</strong> of the cost structure.</p>
+    </div>
+
+    <figure class="visual mt-10 reveal">
+      <img src="images/total-cost-of-ownership.png" alt="True Total Cost of Ownership — 5-year cost complexity comparison" />
+      <figcaption>True total cost of ownership — simplicity drives value, complexity drives cost, risk, and time.</figcaption>
+    </figure>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-12">
+      <article class="glass p-7 reveal">
+        <div class="text-xs uppercase tracking-widest text-teal-500 font-semibold" style="color:#5eead4">Power Platform Code Apps</div>
+        <h3 class="text-2xl font-bold text-white mt-1">Integrated. Predictable. Included.</h3>
+        <p class="mt-2 text-sm text-white/70"><strong class="text-white">What you pay for:</strong> Few components. One bill.</p>
+
+        <div class="mt-5 space-y-3">
+          <div class="flex gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+            <div class="w-9 h-9 rounded-lg bg-azure-500 text-white grid place-items-center font-bold shrink-0 text-xs">PP</div>
+            <div>
+              <div class="font-semibold text-white text-sm">Power Platform</div>
+              <div class="text-xs text-white/65">Platform, services, security, governance, support — all included</div>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+            <div class="w-9 h-9 rounded-lg bg-ink-800 text-white grid place-items-center font-bold shrink-0 text-xs">GH</div>
+            <div>
+              <div class="font-semibold text-white text-sm">GitHub Enterprise</div>
+              <div class="text-xs text-white/65">Source control, collaboration, security, DevOps</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 mt-5 text-xs">
+          <div class="p-3 rounded-lg bg-white/5 border border-white/10"><div class="font-semibold" style="color:#5eead4">Predictable</div><div class="text-white/65 mt-0.5">Clear licensing</div></div>
+          <div class="p-3 rounded-lg bg-white/5 border border-white/10"><div class="font-semibold" style="color:#5eead4">Unified Support</div><div class="text-white/65 mt-0.5">One vendor</div></div>
+          <div class="p-3 rounded-lg bg-white/5 border border-white/10"><div class="font-semibold" style="color:#5eead4">Built-in Governance</div><div class="text-white/65 mt-0.5">Compliance &amp; ALM</div></div>
+          <div class="p-3 rounded-lg bg-white/5 border border-white/10"><div class="font-semibold" style="color:#5eead4">Future-Compatible</div><div class="text-white/65 mt-0.5">Fewer parts</div></div>
+        </div>
+      </article>
+
+      <article class="glass p-7 reveal" style="border-color: rgba(252,165,165,0.20);">
+        <div class="text-xs uppercase tracking-widest text-red-300 font-semibold">Lovable Approach</div>
+        <h3 class="text-2xl font-bold text-white mt-1">Many components. Many bills.</h3>
+        <p class="mt-2 text-sm text-white/70"><strong class="text-white">What you pay for:</strong> Many components. Many bills.</p>
+
+        <div class="mt-5 space-y-2">
+          <div class="flex gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">L</div>
+            <div><div class="font-semibold text-white text-sm">Lovable Platform</div><div class="text-xs text-white/65">Subscription, usage, compute, backups</div></div>
+          </div>
+          <div class="flex gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">SB</div>
+            <div><div class="font-semibold text-white text-sm">Supabase Hosting</div><div class="text-xs text-white/65">AWS-hosted database, storage, networking</div></div>
+          </div>
+          <div class="flex gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">GH</div>
+            <div><div class="font-semibold text-white text-sm">GitHub Enterprise</div><div class="text-xs text-white/65">Repos, security, governance, DevOps</div></div>
+          </div>
+          <div class="flex gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">+G</div>
+            <div><div class="font-semibold text-white text-sm">Extra Governance &amp; Support</div><div class="text-xs text-white/65">Policies, monitoring, incident response, added FTEs</div></div>
+          </div>
+          <div class="flex gap-3 p-3 rounded-lg bg-white/5 border border-white/10">
+            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">C&amp;R</div>
+            <div><div class="font-semibold text-white text-sm">Compliance &amp; Risk Mgmt</div><div class="text-xs text-white/65">Audit, logging, certifications, documentation</div></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 mt-5 text-xs">
+          <div class="p-3 rounded-lg bg-white/5 border border-white/10"><div class="font-semibold text-red-300">Complex</div><div class="text-white/65 mt-0.5">Multiple bills</div></div>
+          <div class="p-3 rounded-lg bg-white/5 border border-white/10"><div class="font-semibold text-red-300">Higher Risk</div><div class="text-white/65 mt-0.5">More integration surface</div></div>
+          <div class="p-3 rounded-lg bg-white/5 border border-white/10"><div class="font-semibold text-red-300">Reduced Reliability</div><div class="text-white/65 mt-0.5">Less consistency</div></div>
+          <div class="p-3 rounded-lg bg-white/5 border border-white/10"><div class="font-semibold text-red-300">Higher Maintenance</div><div class="text-white/65 mt-0.5">Vendor sprawl</div></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="mt-8 p-6 rounded-2xl border border-white/10 bg-gradient-to-r from-azure-500/15 via-plum-600/15 to-teal-500/15 reveal">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-white/10 grid place-items-center text-2xl">★</div>
+        <div>
+          <div class="text-xs uppercase tracking-widest text-white/65 font-semibold">Bottom Line</div>
+          <p class="text-base md:text-lg text-white/90 mt-1">One platform. Fewer moving parts. Greater value.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CHAPTER 8 · MODEL TRANSPARENCY ============== -->
+<section id="models" class="max-w-7xl mx-auto px-6 py-24">
+  <div class="reveal">
+    <span class="pill pill-light">Chapter 08 · AI Flexibility</span>
+    <h2 class="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight text-ink-800">
+      Bring any frontier model. <span class="grad-text-dark">Always know which one you're using.</span>
+    </h2>
+    <p class="mt-4 max-w-3xl text-lg text-slate-600">
+      Coding-model leadership shifts month to month. With <strong>VS Code + GitHub Enterprise</strong>,
+      developers pick the model — by name, by version — and swap the moment a stronger one ships.
+      With Lovable, the model is opaque.
     </p>
   </div>
 
-  <figure class="visual mt-10">
-    <img src="images/total-cost-of-ownership.png" alt="True Total Cost of Ownership — 5-year cost complexity comparison showing few components and one bill on the Power Platform side vs many components and many bills on the Lovable side" />
-    <figcaption>True total cost of ownership — simplicity drives value, complexity drives cost, risk, and time.</figcaption>
-  </figure>
+  <!-- Carousel of models -->
+  <div class="mt-10 -mx-6 px-6 overflow-x-auto carousel reveal" style="display:flex; gap:1rem; padding-bottom:1rem;">
+    <div class="card p-5 shrink-0 w-[260px]">
+      <div class="text-xs uppercase tracking-widest text-azure-500 font-semibold">Anthropic</div>
+      <div class="font-bold text-ink-800 mt-1">Claude Opus 4.x</div>
+      <div class="text-xs text-slate-500 mt-1">Sonnet 4.x · Haiku 4.5</div>
+      <p class="text-xs text-slate-600 mt-3">Industry-leading agentic coding &amp; long-horizon refactors.</p>
+    </div>
+    <div class="card p-5 shrink-0 w-[260px]">
+      <div class="text-xs uppercase tracking-widest text-azure-500 font-semibold">OpenAI</div>
+      <div class="font-bold text-ink-800 mt-1">GPT-5 / GPT-5 Codex</div>
+      <div class="text-xs text-slate-500 mt-1">o-series reasoning</div>
+      <p class="text-xs text-slate-600 mt-3">Strong general coding &amp; deep reasoning workflows.</p>
+    </div>
+    <div class="card p-5 shrink-0 w-[260px]">
+      <div class="text-xs uppercase tracking-widest text-azure-500 font-semibold">Google</div>
+      <div class="font-bold text-ink-800 mt-1">Gemini 2.5 Pro</div>
+      <div class="text-xs text-slate-500 mt-1">Gemini Code Assist</div>
+      <p class="text-xs text-slate-600 mt-3">Massive context windows for whole-repo reasoning.</p>
+    </div>
+    <div class="card p-5 shrink-0 w-[260px]">
+      <div class="text-xs uppercase tracking-widest text-azure-500 font-semibold">GitHub</div>
+      <div class="font-bold text-ink-800 mt-1">GitHub Copilot</div>
+      <div class="text-xs text-slate-500 mt-1">Multi-model: Claude · GPT · Gemini</div>
+      <p class="text-xs text-slate-600 mt-3">One subscription, you choose the brain per task.</p>
+    </div>
+    <div class="card p-5 shrink-0 w-[260px]">
+      <div class="text-xs uppercase tracking-widest text-azure-500 font-semibold">Cursor</div>
+      <div class="font-bold text-ink-800 mt-1">Cursor + Composer</div>
+      <div class="text-xs text-slate-500 mt-1">Routes to Claude / GPT / Gemini</div>
+      <p class="text-xs text-slate-600 mt-3">IDE-native agent loops, model of your choice.</p>
+    </div>
+    <div class="card p-5 shrink-0 w-[260px]">
+      <div class="text-xs uppercase tracking-widest text-azure-500 font-semibold">xAI</div>
+      <div class="font-bold text-ink-800 mt-1">Grok Code</div>
+      <div class="text-xs text-slate-500 mt-1">Grok 4 family</div>
+      <p class="text-xs text-slate-600 mt-3">Real-time web context for current API knowledge.</p>
+    </div>
+    <div class="card p-5 shrink-0 w-[260px]">
+      <div class="text-xs uppercase tracking-widest text-azure-500 font-semibold">DeepSeek</div>
+      <div class="font-bold text-ink-800 mt-1">DeepSeek-Coder V3</div>
+      <div class="text-xs text-slate-500 mt-1">Open-weights option</div>
+      <p class="text-xs text-slate-600 mt-3">Strong code completion at lower cost-per-token.</p>
+    </div>
+    <div class="card p-5 shrink-0 w-[260px]">
+      <div class="text-xs uppercase tracking-widest text-azure-500 font-semibold">Alibaba</div>
+      <div class="font-bold text-ink-800 mt-1">Qwen Coder</div>
+      <div class="text-xs text-slate-500 mt-1">Open-weights, multilingual</div>
+      <p class="text-xs text-slate-600 mt-3">Self-hostable for sovereign workloads.</p>
+    </div>
+  </div>
+
+  <div class="mt-6 p-5 rounded-2xl bg-gradient-to-r from-mist via-white to-mist border border-azure-300/30 reveal">
+    <strong class="text-ink-800">The cadence is the point:</strong>
+    new frontier coding models drop every few weeks.
+    Within <strong>days</strong> of release, they're selectable in GitHub Copilot, Cursor, or directly via VS Code.
+    Yesterday's leader rarely stays the leader for long — and your developers will always know which one they're running.
+  </div>
 
   <div class="grid md:grid-cols-2 gap-6 mt-10">
-
-    <!-- POWER PLATFORM SIDE -->
-    <div class="rounded-2xl bg-white border-2 border-brand-teal/30 card-shadow overflow-hidden">
-      <div class="p-7 bg-gradient-to-br from-brand-mist to-white">
-        <div class="text-xs uppercase tracking-widest text-brand-teal font-semibold">Power Platform Code Apps</div>
-        <h3 class="text-2xl font-bold text-brand-navy mt-1">Integrated. Predictable. Included.</h3>
-        <p class="mt-2 text-sm text-slate-600"><strong>What you pay for:</strong> Few components. One bill.</p>
-      </div>
-
-      <div class="px-7 pb-2">
-        <div class="text-xs uppercase tracking-widest text-slate-500 font-semibold mt-4 mb-3">Components in the cost stack</div>
-        <div class="space-y-3">
-          <div class="flex gap-3 p-3 rounded-lg bg-brand-mist/40 border border-brand-blue/10">
-            <div class="w-9 h-9 rounded-lg bg-brand-blue text-white grid place-items-center font-bold shrink-0">PP</div>
-            <div>
-              <div class="font-semibold text-brand-navy text-sm">Power Platform</div>
-              <div class="text-xs text-slate-600">Platform, services, security, governance, and support — all included</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-3 rounded-lg bg-brand-mist/40 border border-brand-blue/10">
-            <div class="w-9 h-9 rounded-lg bg-brand-navy text-white grid place-items-center font-bold shrink-0">GH</div>
-            <div>
-              <div class="font-semibold text-brand-navy text-sm">GitHub Enterprise</div>
-              <div class="text-xs text-slate-600">Source control, collaboration, security, and DevOps — integrated with Code Apps</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="px-7 py-5">
-        <div class="text-xs uppercase tracking-widest text-slate-500 font-semibold mb-3">Cost characteristics</div>
-        <div class="grid grid-cols-2 gap-2 text-sm">
-          <div class="p-3 rounded-lg border border-brand-teal/20 bg-white">
-            <div class="font-semibold text-brand-teal">Predictable</div>
-            <div class="text-xs text-slate-600">Clear licensing &amp; usage</div>
-          </div>
-          <div class="p-3 rounded-lg border border-brand-teal/20 bg-white">
-            <div class="font-semibold text-brand-teal">Unified Support</div>
-            <div class="text-xs text-slate-600">One vendor relationship</div>
-          </div>
-          <div class="p-3 rounded-lg border border-brand-teal/20 bg-white">
-            <div class="font-semibold text-brand-teal">Built-In Governance</div>
-            <div class="text-xs text-slate-600">Compliance &amp; ALM included</div>
-          </div>
-          <div class="p-3 rounded-lg border border-brand-teal/20 bg-white">
-            <div class="font-semibold text-brand-teal">Future-Compatible</div>
-            <div class="text-xs text-slate-600">Fewer parts to manage</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="px-7 py-4 bg-brand-navy text-white text-sm font-semibold text-center">
-        Fewer moving parts. Easier to budget. Easier to manage.
-      </div>
-    </div>
-
-    <!-- LOVABLE SIDE -->
-    <div class="rounded-2xl bg-white border-2 border-red-300 card-shadow overflow-hidden">
-      <div class="p-7 bg-gradient-to-br from-red-50 to-white">
-        <div class="text-xs uppercase tracking-widest text-red-700 font-semibold">Lovable Approach</div>
-        <h3 class="text-2xl font-bold text-red-900 mt-1">Multiple Components. Multiple Vendors. Multiple Costs.</h3>
-        <p class="mt-2 text-sm text-slate-600"><strong>What you pay for:</strong> Many components. Many bills.</p>
-      </div>
-
-      <div class="px-7 pb-2">
-        <div class="text-xs uppercase tracking-widest text-slate-500 font-semibold mt-4 mb-3">Components in the cost stack</div>
-        <div class="space-y-2">
-          <div class="flex gap-3 p-3 rounded-lg bg-red-50/60 border border-red-200">
-            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">L</div>
-            <div>
-              <div class="font-semibold text-red-900 text-sm">Lovable Platform</div>
-              <div class="text-xs text-slate-600">Subscription, usage, compute, backups</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-3 rounded-lg bg-red-50/60 border border-red-200">
-            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">SB</div>
-            <div>
-              <div class="font-semibold text-red-900 text-sm">Supabase Hosting</div>
-              <div class="text-xs text-slate-600">AWS-hosted database, storage, networking</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-3 rounded-lg bg-red-50/60 border border-red-200">
-            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">GH</div>
-            <div>
-              <div class="font-semibold text-red-900 text-sm">GitHub Enterprise</div>
-              <div class="text-xs text-slate-600">Repos, security, governance, DevOps</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-3 rounded-lg bg-red-50/60 border border-red-200">
-            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">+G</div>
-            <div>
-              <div class="font-semibold text-red-900 text-sm">Extra Governance &amp; Support</div>
-              <div class="text-xs text-slate-600">Policies, monitoring, incident response, added FTEs</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-3 rounded-lg bg-red-50/60 border border-red-200">
-            <div class="w-9 h-9 rounded-lg bg-red-700 text-white grid place-items-center font-bold shrink-0 text-xs">C&amp;R</div>
-            <div>
-              <div class="font-semibold text-red-900 text-sm">Compliance &amp; Risk Mgmt</div>
-              <div class="text-xs text-slate-600">Audit, logging, certifications, documentation</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="px-7 py-5">
-        <div class="text-xs uppercase tracking-widest text-slate-500 font-semibold mb-3">Cost characteristics</div>
-        <div class="grid grid-cols-2 gap-2 text-sm">
-          <div class="p-3 rounded-lg border border-red-200 bg-white">
-            <div class="font-semibold text-red-700">Complex</div>
-            <div class="text-xs text-slate-600">Multiple vendors, multiple bills</div>
-          </div>
-          <div class="p-3 rounded-lg border border-red-200 bg-white">
-            <div class="font-semibold text-red-700">Higher Risk</div>
-            <div class="text-xs text-slate-600">More integration surface</div>
-          </div>
-          <div class="p-3 rounded-lg border border-red-200 bg-white">
-            <div class="font-semibold text-red-700">Reduced Reliability</div>
-            <div class="text-xs text-slate-600">More effort, less consistency</div>
-          </div>
-          <div class="p-3 rounded-lg border border-red-200 bg-white">
-            <div class="font-semibold text-red-700">Higher Maintenance</div>
-            <div class="text-xs text-slate-600">Usage, pricing, vendor sprawl</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="px-7 py-4 bg-red-900 text-white text-sm font-semibold text-center">
-        More moving parts. Harder to budget. Harder to manage.
-      </div>
-    </div>
-  </div>
-
-  <!-- BOTTOM LINE -->
-  <div class="mt-8 rounded-2xl bg-gradient-to-r from-brand-navy via-brand-blue to-brand-teal text-white p-7 card-shadow">
-    <div class="flex flex-col md:flex-row items-start md:items-center gap-5">
-      <div class="shrink-0 w-12 h-12 rounded-full bg-white/15 grid place-items-center text-2xl">★</div>
-      <div class="flex-1">
-        <div class="text-xs uppercase tracking-widest text-white/70 font-semibold">Bottom Line</div>
-        <p class="mt-1 text-base md:text-lg">
-          Power Platform Code Apps combine world-class capabilities with enterprise-grade controls
-          in a predictable, all-in-one model — reducing total cost complexity and operational burden.
-        </p>
-        <p class="mt-2 font-bold text-white text-lg">
-          One platform. Fewer moving parts. Greater value.
-        </p>
-      </div>
-    </div>
+    <article class="card p-7 reveal" style="background:linear-gradient(160deg,#ecfeff 0%,#ffffff 60%); border-color:rgba(20,166,164,0.30);">
+      <h3 class="font-bold text-ink-800 text-xl">Code Apps — Open &amp; Transparent</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li class="check"><strong>Named, versioned models</strong> — you always know what wrote your code</li>
+        <li class="check">Any model in VS Code or GitHub Copilot works here</li>
+        <li class="check">Switch per repo, per developer, per task — even per file</li>
+        <li class="check">GitHub Enterprise controls keys, models, audit, policies</li>
+        <li class="check"><code class="bg-slate-100 px-1 rounded text-xs">copilot-instructions.md</code> sets guardrails across every assistant</li>
+        <li class="check">New frontier model today → available within days</li>
+      </ul>
+    </article>
+    <article class="card p-7 reveal" style="background:linear-gradient(160deg,#fef2f2 0%,#ffffff 60%); border-color:rgba(220,38,38,0.20);">
+      <h3 class="font-bold text-red-900 text-xl">Lovable — Opaque Models</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li class="cross"><strong>No model transparency</strong> — you don't know which model or version</li>
+        <li class="cross">Cannot verify whether you're on the latest frontier capability</li>
+        <li class="cross">Lovable decides the model roster — switching is not yours</li>
+        <li class="cross">No version history, no audit trail of which model produced what</li>
+        <li class="cross">Enterprise key management lives outside customer control</li>
+        <li class="cross">In a landscape that shifts weekly, opacity is a liability</li>
+      </ul>
+    </article>
   </div>
 </section>
 
-<!-- ============== 8. AI TOOL FLEXIBILITY ============== -->
-<section class="bg-white border-y border-slate-200 py-20 mb-24">
-  <div class="max-w-7xl mx-auto px-6">
-    <span class="pill bg-brand-mist text-brand-blue">08 · AI Flexibility &amp; Model Transparency</span>
-    <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">Bring Any Frontier Model — And Always Know Which One You're Using</h2>
-    <p class="mt-3 max-w-3xl">
-      Coding-model leadership changes month to month. With <strong>VS Code + GitHub Enterprise</strong>,
-      the developer picks the model — by name, by version — and swaps the moment a stronger one ships.
-      With Lovable, the model is opaque: you never really know what's under the hood.
-    </p>
-
-    <!-- Top coding models showcase -->
-    <div class="mt-8 rounded-2xl bg-gradient-to-br from-brand-mist to-white border border-brand-blue/20 p-7">
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-        <h3 class="font-bold text-brand-navy text-lg">Top coding-centric models available today in VS Code &amp; GitHub Copilot</h3>
-        <span class="pill bg-brand-teal text-white">New releases land within days</span>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-
-        <div class="p-4 rounded-xl border border-brand-blue/20 bg-white">
-          <div class="text-xs uppercase tracking-widest text-brand-blue font-semibold">Anthropic</div>
-          <div class="font-bold text-brand-navy mt-1">Claude Opus 4.x</div>
-          <div class="text-xs text-slate-500 mt-1">Claude Sonnet 4.x · Haiku 4.5</div>
-          <div class="text-xs text-slate-600 mt-2">Industry-leading agentic coding &amp; long-horizon refactors</div>
-        </div>
-
-        <div class="p-4 rounded-xl border border-brand-blue/20 bg-white">
-          <div class="text-xs uppercase tracking-widest text-brand-blue font-semibold">OpenAI</div>
-          <div class="font-bold text-brand-navy mt-1">GPT-5 / GPT-5 Codex</div>
-          <div class="text-xs text-slate-500 mt-1">o-series reasoning models</div>
-          <div class="text-xs text-slate-600 mt-2">Strong general coding &amp; deep reasoning workflows</div>
-        </div>
-
-        <div class="p-4 rounded-xl border border-brand-blue/20 bg-white">
-          <div class="text-xs uppercase tracking-widest text-brand-blue font-semibold">Google</div>
-          <div class="font-bold text-brand-navy mt-1">Gemini 2.5 Pro</div>
-          <div class="text-xs text-slate-500 mt-1">Gemini Code Assist</div>
-          <div class="text-xs text-slate-600 mt-2">Massive context windows for whole-repo reasoning</div>
-        </div>
-
-        <div class="p-4 rounded-xl border border-brand-blue/20 bg-white">
-          <div class="text-xs uppercase tracking-widest text-brand-blue font-semibold">GitHub</div>
-          <div class="font-bold text-brand-navy mt-1">GitHub Copilot</div>
-          <div class="text-xs text-slate-500 mt-1">Multi-model: Claude, GPT, Gemini</div>
-          <div class="text-xs text-slate-600 mt-2">One subscription, you choose the brain per task</div>
-        </div>
-
-        <div class="p-4 rounded-xl border border-brand-blue/20 bg-white">
-          <div class="text-xs uppercase tracking-widest text-brand-blue font-semibold">Cursor</div>
-          <div class="font-bold text-brand-navy mt-1">Cursor + Composer</div>
-          <div class="text-xs text-slate-500 mt-1">Routes to Claude / GPT / Gemini</div>
-          <div class="text-xs text-slate-600 mt-2">IDE-native agent loops, model of your choice</div>
-        </div>
-
-        <div class="p-4 rounded-xl border border-brand-blue/20 bg-white">
-          <div class="text-xs uppercase tracking-widest text-brand-blue font-semibold">xAI</div>
-          <div class="font-bold text-brand-navy mt-1">Grok Code</div>
-          <div class="text-xs text-slate-500 mt-1">Grok 4 family</div>
-          <div class="text-xs text-slate-600 mt-2">Real-time web context for current API knowledge</div>
-        </div>
-
-        <div class="p-4 rounded-xl border border-brand-blue/20 bg-white">
-          <div class="text-xs uppercase tracking-widest text-brand-blue font-semibold">DeepSeek</div>
-          <div class="font-bold text-brand-navy mt-1">DeepSeek-Coder V3</div>
-          <div class="text-xs text-slate-500 mt-1">Open-weights option</div>
-          <div class="text-xs text-slate-600 mt-2">Strong code completion at lower cost-per-token</div>
-        </div>
-
-        <div class="p-4 rounded-xl border border-brand-blue/20 bg-white">
-          <div class="text-xs uppercase tracking-widest text-brand-blue font-semibold">Alibaba</div>
-          <div class="font-bold text-brand-navy mt-1">Qwen Coder</div>
-          <div class="text-xs text-slate-500 mt-1">Open-weights, multilingual</div>
-          <div class="text-xs text-slate-600 mt-2">Self-hostable for sovereign workloads</div>
-        </div>
-      </div>
-
-      <div class="mt-5 p-4 rounded-lg bg-white border-l-4 border-brand-teal text-sm">
-        <strong class="text-brand-navy">The cadence is the point:</strong>
-        new frontier coding models drop every few weeks.
-        Within <strong>days</strong> of release, they're selectable in GitHub Copilot, Cursor, or directly via VS Code extensions.
-        Yesterday's leader rarely stays the leader for long — and your developers will always know which one they're running.
-      </div>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-6 mt-10">
-      <div class="rounded-2xl p-7 bg-gradient-to-br from-brand-mist to-white border border-brand-blue/20">
-        <h3 class="font-bold text-brand-navy text-xl">Code Apps — Open &amp; Transparent by Design</h3>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li class="check"><strong>Named, versioned models</strong> — you always know exactly what wrote your code</li>
-          <li class="check">Any model that works in VS Code or GitHub Copilot works here</li>
-          <li class="check">Switch per repo, per developer, per task — even per file</li>
-          <li class="check">GitHub Enterprise controls keys, models, audit logs, and policies</li>
-          <li class="check"><code class="bg-slate-100 px-1 rounded">copilot-instructions.md</code> sets guardrails across every assistant</li>
-          <li class="check">New frontier model released today → available to your developers within days</li>
-        </ul>
-      </div>
-      <div class="rounded-2xl p-7 bg-red-50 border border-red-200">
-        <h3 class="font-bold text-red-900 text-xl">Lovable — Opaque Models, Hidden Capability</h3>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li class="cross"><strong>No model transparency</strong> — you don't know which model, or which version, is generating your app</li>
-          <li class="cross">Cannot verify whether you're on the latest frontier capability or a year-old release</li>
-          <li class="cross">Lovable decides the model roster — switching is not the customer's decision</li>
-          <li class="cross">No version history, no audit trail of which model produced which artifact</li>
-          <li class="cross">Enterprise key management and routing lives outside customer control</li>
-          <li class="cross">In a landscape where leadership shifts weekly, opacity is a strategic liability</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="mt-6 p-5 rounded-xl bg-brand-navy text-white text-sm">
-      <strong>Why transparency matters:</strong>
-      coding model quality is improving on a near-monthly cadence — Claude, GPT, and Gemini have each held the top of the SWE-bench style leaderboards at different points.
-      If you can't name the model, you can't verify you're using the best one. With Code Apps, you always can.
-    </div>
+<!-- ============== CHAPTER 9 · BIGGER PICTURE ============== -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+  <div class="text-center max-w-3xl mx-auto reveal">
+    <span class="pill pill-plum">Chapter 09 · The Bigger Picture</span>
+    <h2 class="mt-4 text-3xl md:text-6xl font-extrabold tracking-tight text-ink-800 leading-[1.05]">
+      Fragmentation feels fast at first.<br />
+      <span class="grad-text-dark">Platform coherence wins at scale.</span>
+    </h2>
   </div>
-</section>
-
-<!-- ============== UNIFIED PLATFORM CAPSTONE ============== -->
-<section class="max-w-7xl mx-auto px-6 mb-16">
-  <div class="text-center max-w-3xl mx-auto mb-8">
-    <span class="pill bg-brand-mist text-brand-blue">The Bigger Picture</span>
-    <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">One Platform. One Governance. One Source of Truth.</h2>
-    <p class="mt-3 text-slate-600">
-      Step back and look at the whole. A single cohesive platform on Microsoft Power Platform
-      versus a fragmented system of vendors, gaps, and integrations.
-    </p>
-  </div>
-  <figure class="visual">
-    <img src="images/unified-platform.png" alt="Unified Platform vs Fragmented Tools — single cohesive Microsoft Power Platform vs fragmented system with GitHub + Lovable + Supabase + Azure DevOps and integration gaps" />
+  <figure class="visual mt-12 reveal">
+    <img src="images/unified-platform.png" alt="Unified Platform vs Fragmented Tools — single cohesive Microsoft Power Platform vs fragmented system" />
     <figcaption>Unified platform vs fragmented tools — connected, governed, reliable, built to scale.</figcaption>
   </figure>
 </section>
 
-<!-- ============== 09. CODE APPS FOUNDATIONS ============== -->
-<section id="foundations" class="max-w-7xl mx-auto px-6 mb-24">
-  <span class="pill bg-brand-mist text-brand-blue">09 · Start Strong</span>
-  <h2 class="mt-3 text-3xl md:text-4xl font-bold text-brand-navy">Getting Started Is the Hardest Part — Until Now.</h2>
-  <p class="mt-3 max-w-3xl text-lg">
-    Most teams spend their first month discovering platform quirks the hard way:
-    Dataverse tables need solution context, <code class="bg-slate-100 px-1 rounded">pac code push</code> rejects service principals,
-    the generated SDK breaks without the right <code class="bg-slate-100 px-1 rounded">moduleResolution</code>.
-    <strong>PAppsCAFoundations</strong> encodes every one of those lessons so your team builds features on day one.
-  </p>
+<!-- ============== CHAPTER 10 · FOUNDATIONS ============== -->
+<section id="foundations" class="bg-gradient-to-br from-mist via-white to-white py-24 border-y border-slate-200">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="reveal">
+      <span class="pill pill-plum">Chapter 10 · Foundations</span>
+      <h2 class="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight text-ink-800">
+        Getting started is the hardest part — <span class="grad-text-dark">until now.</span>
+      </h2>
+      <p class="mt-4 max-w-3xl text-lg text-slate-600">
+        Most teams spend their first month discovering platform quirks the hard way.
+        <strong>PAppsCAFoundations</strong> encodes every one of those lessons into a repeatable, tested path —
+        so your team builds features on day one, not debugs platform quirks.
+      </p>
+    </div>
 
-  <figure class="visual mt-10 mb-10">
-    <img src="assets/CodeAppsFoundations.png" alt="Your Path to Success with Power Apps Code Apps — from 'Getting Started is the Hardest Part' to a clear, proven golden path with PAppsCAFoundations" />
-    <figcaption>PAppsCAFoundations — a proven foundation, a clear path, faster to value.</figcaption>
-  </figure>
+    <figure class="visual mt-10 reveal">
+      <img src="assets/CodeAppsFoundations.png" alt="Your Path to Success with Power Apps Code Apps — PAppsCAFoundations golden path" />
+      <figcaption>PAppsCAFoundations — a proven foundation, a clear path, faster to value.</figcaption>
+    </figure>
 
-  <div class="grid md:grid-cols-3 gap-5">
-    <div class="bg-white rounded-2xl p-6 border border-slate-200 card-shadow">
-      <div class="text-2xl mb-2">🧭</div>
-      <h3 class="font-bold text-brand-navy">Consulting-Grade Methodology</h3>
-      <p class="text-sm mt-2">
-        Business decomposition → scope refinement → Dataverse planning → prototype validation → build &amp; deploy.
-        An iterative golden path that consulting firms charge millions to deliver — encoded in your repo.
-      </p>
+    <div class="grid md:grid-cols-3 gap-5 mt-12">
+      <article class="card p-6 reveal">
+        <div class="text-2xl">🧭</div>
+        <h3 class="font-bold text-ink-800 mt-2">Consulting-Grade Methodology</h3>
+        <p class="text-sm text-slate-600 mt-2">Business decomposition → scope refinement → Dataverse planning → prototype validation → build &amp; deploy. Encoded in your repo.</p>
+      </article>
+      <article class="card p-6 reveal">
+        <div class="text-2xl">🤖</div>
+        <h3 class="font-bold text-ink-800 mt-2">Agent-Guided Development</h3>
+        <p class="text-sm text-slate-600 mt-2">14 scoped instruction files plus <code class="bg-slate-100 px-1 rounded text-xs">AGENTS.md</code> — Copilot, Cursor, Claude Code, every agent follows the same rules.</p>
+      </article>
+      <article class="card p-6 reveal">
+        <div class="text-2xl">⚡</div>
+        <h3 class="font-bold text-ink-800 mt-2">Interactive Setup Wizard</h3>
+        <p class="text-sm text-slate-600 mt-2">A 9-step wizard verifies prerequisites, scaffolds React + Fluent UI + Dataverse, seeds prototype assets, runs smoke tests.</p>
+      </article>
+      <article class="card p-6 reveal">
+        <div class="text-2xl">🧪</div>
+        <h3 class="font-bold text-ink-800 mt-2">Testable from Day One</h3>
+        <p class="text-sm text-slate-600 mt-2">Vitest, Playwright, MSW ship in the scaffold. Smoke tests pass on first run. Mocks let you test before Dataverse exists.</p>
+      </article>
+      <article class="card p-6 reveal">
+        <div class="text-2xl">🔐</div>
+        <h3 class="font-bold text-ink-800 mt-2">Security-First Auth</h3>
+        <p class="text-sm text-slate-600 mt-2">1Password CLI integration or AES-256-GCM encrypted secrets. Pre-commit hooks block accidental secret commits.</p>
+      </article>
+      <article class="card p-6 reveal">
+        <div class="text-2xl">🔄</div>
+        <h3 class="font-bold text-ink-800 mt-2">Foundations Sync</h3>
+        <p class="text-sm text-slate-600 mt-2">Pull the latest instructions, scripts, and wizard into your downstream project. No fork management. No merge conflicts.</p>
+      </article>
     </div>
-    <div class="bg-white rounded-2xl p-6 border border-slate-200 card-shadow">
-      <div class="text-2xl mb-2">🤖</div>
-      <h3 class="font-bold text-brand-navy">Agent-Guided Development</h3>
-      <p class="text-sm mt-2">
-        14 scoped instruction files plus <code class="bg-slate-100 px-1 rounded">AGENTS.md</code> mean GitHub Copilot, Cursor, Claude Code, and every other coding agent
-        follows the same architecture, naming, and security rules. Your standards, enforced by any agent your team picks.
-      </p>
-    </div>
-    <div class="bg-white rounded-2xl p-6 border border-slate-200 card-shadow">
-      <div class="text-2xl mb-2">⚡</div>
-      <h3 class="font-bold text-brand-navy">Interactive Setup Wizard</h3>
-      <p class="text-sm mt-2">
-        A 9-step wizard that verifies prerequisites, scaffolds React + Fluent UI + Dataverse,
-        seeds prototype assets, and runs smoke tests. From zero to a working, testable app in a single session.
-      </p>
-    </div>
-  </div>
 
-  <div class="grid md:grid-cols-2 gap-5 mt-5">
-    <div class="bg-white rounded-2xl p-6 border border-slate-200 card-shadow">
-      <div class="text-2xl mb-2">🧪</div>
-      <h3 class="font-bold text-brand-navy">Testable from Day One</h3>
-      <p class="text-sm mt-2">
-        Vitest, Playwright, and MSW ship in the scaffold. Smoke tests pass on first run.
-        Mock providers mean the prototype is testable before Dataverse tables even exist.
-      </p>
-    </div>
-    <div class="bg-white rounded-2xl p-6 border border-slate-200 card-shadow">
-      <div class="text-2xl mb-2">🔐</div>
-      <h3 class="font-bold text-brand-navy">Security-First Auth Pipeline</h3>
-      <p class="text-sm mt-2">
-        1Password CLI integration or AES-256-GCM encrypted secrets. Pre-commit hooks block accidental
-        secret commits. CI/CD uses GitHub secrets with SPN profiles — secrets never touch disk.
-      </p>
-    </div>
-  </div>
-
-  <div class="mt-8 rounded-2xl bg-gradient-to-r from-brand-navy via-brand-blue to-brand-teal text-white p-7 card-shadow">
-    <div class="flex flex-col md:flex-row items-center gap-6">
-      <div class="flex-1">
-        <div class="text-xs uppercase tracking-widest text-white/70 font-semibold">Open Source · MIT Licensed · Ready to Use</div>
-        <p class="mt-2 text-lg font-bold">Start strong. Build smart. Deliver impact.</p>
-        <p class="mt-1 text-sm text-white/85">
-          Clone the template, run the wizard, start building. Your team gets the accumulated lessons of every team that came before.
-        </p>
+    <div class="mt-10 rounded-3xl p-8 md:p-10 text-white relative overflow-hidden card-shadow reveal" style="background: linear-gradient(135deg, #0A2540 0%, #5B21B6 50%, #14A6A4 100%);">
+      <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image:radial-gradient(circle at 20% 80%, rgba(255,255,255,0.2) 1px, transparent 1px); background-size: 24px 24px;"></div>
+      <div class="relative grid md:grid-cols-2 gap-6 items-center">
+        <div>
+          <div class="text-xs uppercase tracking-widest text-white/70 font-semibold">Open Source · MIT Licensed</div>
+          <div class="text-2xl md:text-3xl font-extrabold mt-2">Start strong. Build smart. Deliver impact.</div>
+          <p class="mt-2 text-white/85 text-sm">Clone the template, run the wizard, start building. Your team gets the accumulated lessons of every team that came before.</p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:justify-end">
+          <a href="https://github.com/martycarreras-psnl/PAppsCAFoundations" target="_blank" rel="noopener"
+             class="bg-white text-ink-800 font-semibold px-5 py-3 rounded-xl hover:bg-mist transition shadow-lg">Open Repo →</a>
+          <a href="https://martycarreras-psnl.github.io/PAppsCAFoundations/guide.html" target="_blank" rel="noopener"
+             class="bg-white/10 backdrop-blur border border-white/30 text-white font-semibold px-5 py-3 rounded-xl hover:bg-white/20 transition">See Setup Path</a>
+          <a href="https://aka.ms/codeappsfoundations" target="_blank" rel="noopener"
+             class="bg-gradient-to-r from-plum-500 to-azure-400 text-white font-semibold px-5 py-3 rounded-xl hover:opacity-90 transition shadow-lg">Start Building</a>
+        </div>
       </div>
-      <a href="https://aka.ms/codeappsfoundations" target="_blank" rel="noopener"
-         class="shrink-0 bg-white text-brand-navy font-semibold px-6 py-3 rounded-lg hover:bg-brand-mist transition text-center">
-        Explore PAppsCAFoundations →
-      </a>
     </div>
   </div>
 </section>
 
-<!-- ============== 10. VERDICT ============== -->
-<section id="verdict" class="max-w-7xl mx-auto px-6 mb-24">
-  <div class="rounded-3xl gradient-hero text-white p-10 md:p-14 card-shadow">
-    <span class="pill bg-white/15 border border-white/20">10 · Strategic Conclusion</span>
-    <h2 class="mt-4 text-3xl md:text-5xl font-bold leading-tight">
-      For governed, compliant, agent-ready scale —
-      <span class="block text-white/85">Code Apps with Dataverse is the clear winner.</span>
-    </h2>
+<!-- ============== CHAPTER 11 · VERDICT ============== -->
+<section id="verdict" class="max-w-7xl mx-auto px-6 py-24">
+  <div class="rounded-3xl text-white p-10 md:p-16 relative overflow-hidden card-shadow grad-section-dark reveal">
+    <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full opacity-30 pointer-events-none" style="background:radial-gradient(circle, #7C3AED 0%, transparent 70%);"></div>
+    <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full opacity-30 pointer-events-none" style="background:radial-gradient(circle, #14A6A4 0%, transparent 70%);"></div>
 
-    <div class="mt-8 grid md:grid-cols-2 gap-6 text-white/90">
-      <div>
-        <h3 class="font-semibold text-white">Choose Code Apps when you value:</h3>
-        <ul class="mt-3 space-y-2 text-sm">
-          <li class="check">Tenant-resident, BAA-covered data (PHI, PII, regulated)</li>
-          <li class="check">A maturity model from citizen to pro developer</li>
-          <li class="check">Native MCP and agent intelligence</li>
-          <li class="check">Configure-once governance for 1,000+ makers</li>
-          <li class="check">External-facing apps via Power Pages BYOC</li>
-          <li class="check">Freedom to use any frontier AI model in VS Code</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-semibold text-white">Reconsider Lovable when:</h3>
-        <ul class="mt-3 space-y-2 text-sm">
-          <li class="cross">PHI or other regulated data is in scope</li>
-          <li class="cross">You need tenant-wide governance and ALM</li>
-          <li class="cross">Hundreds of repos and Supabase instances are unmanageable</li>
-          <li class="cross">Agent integration is a strategic priority</li>
-          <li class="cross">Long-term maintainability matters more than first-week velocity</li>
-        </ul>
-      </div>
-    </div>
+    <div class="relative">
+      <span class="pill pill-dark">Chapter 11 · The Verdict</span>
+      <h2 class="mt-5 text-3xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
+        If you're building serious enterprise applications,<br />
+        <span class="grad-text">platforms win.</span>
+      </h2>
+      <p class="mt-5 text-xl md:text-2xl text-white/85 max-w-3xl font-light">
+        Build with AI speed. <span class="text-white font-semibold">Govern with enterprise confidence.</span>
+      </p>
 
-    <div class="mt-10 p-6 rounded-2xl bg-white/10 border border-white/20">
-      <p class="text-lg md:text-xl italic">
-        "The AI coding tool is just the hammer. The platform is the house."
-      </p>
-      <p class="mt-2 text-sm text-white/70">
-        For organizations that value governance, compliance, agent integration, long-term
-        maintainability, and the ability to scale citizen development safely —
-        <strong>especially when PHI is involved</strong> — Power Platform Code Apps with
-        Dataverse is the clear, defensible enterprise choice.
-      </p>
+      <div class="mt-12 grid md:grid-cols-2 gap-8">
+        <div class="glass p-7">
+          <h3 class="font-bold text-white text-lg">Choose Code Apps when you value:</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-white/85">
+            <li class="check-dark">Tenant-resident, BAA-covered data (PHI, PII, regulated)</li>
+            <li class="check-dark">A maturity model from citizen to pro developer</li>
+            <li class="check-dark">Native MCP and agent intelligence</li>
+            <li class="check-dark">Configure-once governance for 1,000+ makers</li>
+            <li class="check-dark">External-facing apps via Power Pages BYOC</li>
+            <li class="check-dark">Freedom to use any frontier AI model in VS Code</li>
+          </ul>
+        </div>
+        <div class="glass p-7" style="border-color: rgba(252,165,165,0.20);">
+          <h3 class="font-bold text-white text-lg">Reconsider Lovable when:</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-white/85">
+            <li class="cross-dark">PHI or other regulated data is in scope</li>
+            <li class="cross-dark">You need tenant-wide governance and ALM</li>
+            <li class="cross-dark">Hundreds of repos and Supabase instances are unmanageable</li>
+            <li class="cross-dark">Agent integration is a strategic priority</li>
+            <li class="cross-dark">Long-term maintainability matters more than first-week velocity</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-10 p-7 rounded-2xl border border-white/10 bg-white/5">
+        <p class="text-lg md:text-xl italic text-white/90">"The AI coding tool is just the hammer. The platform is the house."</p>
+        <p class="mt-3 text-sm text-white/65">
+          For organizations that value governance, compliance, agent integration, long-term maintainability,
+          and the ability to scale citizen development safely — <strong class="text-white">especially when PHI is involved</strong> —
+          Power Apps Code Apps with Dataverse is the clear, defensible enterprise choice.
+        </p>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="#foundations" class="bg-white text-ink-800 font-semibold px-6 py-3 rounded-xl hover:bg-mist transition shadow-lg">Start with Foundations →</a>
+        <a href="#top" class="bg-white/10 border border-white/20 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/20 transition">Back to Top</a>
+      </div>
     </div>
   </div>
 </section>
@@ -985,9 +1065,60 @@
 <!-- ============== FOOTER ============== -->
 <footer class="border-t border-slate-200 py-10 text-center text-sm text-slate-500">
   <div class="max-w-7xl mx-auto px-6">
-    Strategic conversation summary · Marty Carreras &amp; Ara · Power Platform Code Apps with Dataverse
+    Power Apps Code Apps Advantage · Build with AI speed. Govern with enterprise confidence.
   </div>
 </footer>
+
+<script>
+  // Scroll progress
+  const progress = document.getElementById('scrollProgress');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progress.style.width = pct + '%';
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal on intersect
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Active section highlight in sticky nav
+  const navLinks = document.querySelectorAll('nav.chapter-nav a[data-link]');
+  const linkMap = {};
+  navLinks.forEach(a => linkMap[a.dataset.link] = a);
+  const sections = ['top','maturity','governance','compliance','mcp','doors','dataverse','cost','models','foundations','verdict']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  const navIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const id = e.target.id;
+      if (e.isIntersecting && linkMap[id]) {
+        Object.values(linkMap).forEach(a => a.classList.remove('active'));
+        linkMap[id].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  sections.forEach(s => navIo.observe(s));
+
+  // Comparison matrix toggle
+  const matrixBtn = document.getElementById('matrix-toggle');
+  const matrixRest = document.getElementById('matrix-rest');
+  if (matrixBtn && matrixRest) {
+    matrixBtn.addEventListener('click', () => {
+      const hidden = matrixRest.classList.toggle('hidden');
+      matrixBtn.textContent = hidden ? 'Show 4 more rows ▾' : 'Show fewer rows ▴';
+    });
+  }
+</script>
 
 </body>
 </html>
