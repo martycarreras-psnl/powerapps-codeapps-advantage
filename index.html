@@ -224,6 +224,8 @@
     /* Hide interactive / non-print chrome */
     .scroll-progress,
     nav.chapter-nav,
+    #mobileNavDrawer,
+    #mobileNavToggle,
     #top,
     #listen,
     .lightbox,
@@ -326,15 +328,15 @@
 
 <!-- ============== STICKY NAV ============== -->
 <nav class="chapter-nav text-white">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-3 group">
-      <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-azure-500 via-plum-600 to-teal-500 grid place-items-center font-bold shadow-lg">PA</div>
-      <div class="leading-tight">
-        <div class="text-sm font-bold tracking-wide">Power Apps Code Apps Advantage</div>
-        <div class="text-[10px] uppercase tracking-widest text-white/60">Build with AI speed. Govern with enterprise confidence.</div>
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-3">
+    <a href="#top" class="flex items-center gap-3 group min-w-0">
+      <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-azure-500 via-plum-600 to-teal-500 grid place-items-center font-bold shadow-lg shrink-0">PA</div>
+      <div class="leading-tight min-w-0">
+        <div class="text-sm font-bold tracking-wide truncate">Power Apps Code Apps Advantage</div>
+        <div class="text-[10px] uppercase tracking-widest text-white/60 hidden sm:block">Build with AI speed. Govern with enterprise confidence.</div>
       </div>
     </a>
-    <div class="chapter-links hidden md:flex gap-5 text-xs font-medium text-white/65">
+    <div class="chapter-links hidden md:flex gap-5 text-xs font-medium text-white/65 items-center">
       <a href="#top" data-link="top" class="hover:text-white">Top</a>
       <a href="#listen" data-link="listen" class="hover:text-white">Listen</a>
       <a href="#maturity" data-link="maturity" class="hover:text-white">Maturity</a>
@@ -347,10 +349,33 @@
       <a href="#models" data-link="models" class="hover:text-white">Models</a>
       <a href="#foundations" data-link="foundations" class="hover:text-white">Foundations</a>
       <a href="#verdict" data-link="verdict" class="hover:text-white">Verdict</a>
-      <a href="assets/brief.pdf" download class="ml-2 inline-flex items-center gap-1.5 bg-gradient-to-r from-plum-600 to-azure-500 text-white px-3 py-1.5 rounded-lg hover:opacity-90 transition shadow-md" title="Download the full brief as PDF">
+    </div>
+    <div class="flex items-center gap-2 shrink-0">
+      <a href="assets/brief.pdf" download class="inline-flex items-center gap-1.5 bg-gradient-to-r from-plum-600 to-azure-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:opacity-90 transition shadow-md" title="Download the full brief as PDF">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>
         PDF
       </a>
+      <button id="mobileNavToggle" type="button" aria-label="Toggle chapter menu" aria-expanded="false" aria-controls="mobileNavDrawer" class="md:hidden w-9 h-9 grid place-items-center rounded-lg bg-white/10 border border-white/20 hover:bg-white/20 transition">
+        <svg id="iconMenu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+        <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 hidden"><path d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.29 19.71 2.88 18.29 9.17 12 2.88 5.71 4.29 4.29l6.3 6.3 6.3-6.3z"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile drawer -->
+  <div id="mobileNavDrawer" class="md:hidden hidden border-t border-white/10 bg-ink-950/95 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-6 py-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm font-medium text-white/80">
+      <a href="#top" class="mobile-nav-link py-1.5 hover:text-white">Top</a>
+      <a href="#listen" class="mobile-nav-link py-1.5 hover:text-white">Listen</a>
+      <a href="#maturity" class="mobile-nav-link py-1.5 hover:text-white">Maturity</a>
+      <a href="#governance" class="mobile-nav-link py-1.5 hover:text-white">Governance</a>
+      <a href="#compliance" class="mobile-nav-link py-1.5 hover:text-white">Compliance</a>
+      <a href="#mcp" class="mobile-nav-link py-1.5 hover:text-white">MCP</a>
+      <a href="#doors" class="mobile-nav-link py-1.5 hover:text-white">Two Doors</a>
+      <a href="#dataverse" class="mobile-nav-link py-1.5 hover:text-white">Dataverse</a>
+      <a href="#cost" class="mobile-nav-link py-1.5 hover:text-white">Cost</a>
+      <a href="#models" class="mobile-nav-link py-1.5 hover:text-white">Models</a>
+      <a href="#foundations" class="mobile-nav-link py-1.5 hover:text-white">Foundations</a>
+      <a href="#verdict" class="mobile-nav-link py-1.5 hover:text-white">Verdict</a>
     </div>
   </div>
 </nav>
@@ -1275,6 +1300,23 @@
 </div>
 
 <script>
+  // Mobile nav toggle
+  (() => {
+    const btn = document.getElementById('mobileNavToggle');
+    const drawer = document.getElementById('mobileNavDrawer');
+    const iconMenu = document.getElementById('iconMenu');
+    const iconClose = document.getElementById('iconClose');
+    if (!btn || !drawer) return;
+    const setOpen = (open) => {
+      drawer.classList.toggle('hidden', !open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      iconMenu.classList.toggle('hidden', open);
+      iconClose.classList.toggle('hidden', !open);
+    };
+    btn.addEventListener('click', () => setOpen(drawer.classList.contains('hidden')));
+    drawer.querySelectorAll('.mobile-nav-link').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  })();
+
   // Scroll progress
   const progress = document.getElementById('scrollProgress');
   const onScroll = () => {
