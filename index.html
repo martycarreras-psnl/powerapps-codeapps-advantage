@@ -213,104 +213,6 @@
   @media (max-width: 768px) {
     nav.chapter-nav .chapter-links { display: none; }
   }
-
-  /* ============== PRINT / PDF ============== */
-  @media print {
-    @page { size: Letter; margin: 0.6in 0.55in 0.7in 0.55in; }
-
-    html, body { background: #fff !important; color: #0f172a !important; font-size: 10.5pt; }
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-
-    /* Hide interactive / non-print chrome */
-    .scroll-progress,
-    nav.chapter-nav,
-    #mobileNavDrawer,
-    #mobileNavToggle,
-    #top,
-    #listen,
-    .lightbox,
-    .lightbox-controls,
-    .lightbox-caption,
-    .no-print,
-    audio,
-    header.grad-hero a[href="#maturity"],
-    header.grad-hero a[href="#listen"] { display: none !important; }
-
-    /* Hero: convert dark gradient to clean light cover */
-    header.grad-hero {
-      background: #fff !important;
-      color: #0A2540 !important;
-      page-break-after: always; break-after: page;
-      padding: 1in 0 0.5in 0 !important;
-    }
-    header.grad-hero h1 { color: #0A2540 !important; font-size: 42pt !important; line-height: 1.05 !important; }
-    header.grad-hero .grad-text { -webkit-text-fill-color: initial; color: #7C3AED !important; background: none !important; }
-    header.grad-hero p { color: #475569 !important; font-size: 13pt !important; }
-    header.grad-hero .absolute { display: none !important; }
-
-    /* Section spacing + page rhythm */
-    section { page-break-before: auto; break-before: auto; padding: 0.4in 0 !important; max-width: 100% !important; }
-    section[id]:not(:first-of-type) { page-break-before: page; break-before: page; }
-
-    /* Headings stay with following content */
-    h1, h2, h3, h4 { page-break-after: avoid; break-after: avoid; color: #0A2540 !important; }
-    h2 { font-size: 22pt !important; margin-top: 0 !important; }
-    h3 { font-size: 13pt !important; }
-    .grad-text-dark { -webkit-text-fill-color: initial; color: #5B21B6 !important; background: none !important; }
-
-    /* Atomic blocks — never split across pages */
-    .card,
-    article.card,
-    figure,
-    figure.visual,
-    table,
-    thead, tbody, tr,
-    .glass, .glass-light, .ring-tile,
-    blockquote,
-    .pill,
-    details {
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
-
-    /* Force all expandable details open in print */
-    details { display: block !important; }
-    details > summary { display: none !important; }
-    details > *:not(summary) { display: block !important; }
-
-    /* Figures */
-    figure.visual { box-shadow: none !important; border: 1px solid #cbd5e1 !important; }
-    figure.visual img { max-height: 7.5in; object-fit: contain; cursor: default !important; }
-
-    /* Cards in print */
-    .card { box-shadow: none !important; border: 1px solid #cbd5e1 !important; transform: none !important; }
-
-    /* Grids: stack to 2-cols max for legibility */
-    .grid.md\\:grid-cols-3,
-    .grid.lg\\:grid-cols-3,
-    .grid.md\\:grid-cols-4 { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0.2in !important; }
-    .grid.md\\:grid-cols-12,
-    .grid.lg\\:grid-cols-12 { display: block !important; }
-
-    /* Carousel: wrap instead of scroll */
-    .carousel { display: flex !important; flex-wrap: wrap !important; overflow: visible !important; gap: 0.2in !important; }
-    .carousel > * { flex: 1 1 45% !important; }
-
-    /* Links: show URL inline for citations */
-    a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; color: #64748b; word-break: break-all; }
-    a[href^="#"]::after, a[href^="mailto"]::after { content: ""; }
-
-    /* Reveal-on-scroll — force visible */
-    .reveal { opacity: 1 !important; transform: none !important; }
-
-    /* Tables */
-    table { width: 100% !important; border-collapse: collapse !important; font-size: 9.5pt !important; }
-    th, td { border: 1px solid #cbd5e1 !important; padding: 6pt 8pt !important; }
-    thead { display: table-header-group; }
-
-    /* Hide hero image figure (decorative duplicate) */
-    header.grad-hero figure { display: none !important; }
-  }
 </style>
 </head>
 <body class="bg-slate-50">
@@ -351,10 +253,6 @@
       <a href="#verdict" data-link="verdict" class="hover:text-white">Verdict</a>
     </div>
     <div class="flex items-center gap-2 shrink-0">
-      <a href="assets/brief.pdf" download class="inline-flex items-center gap-1.5 bg-gradient-to-r from-plum-600 to-azure-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:opacity-90 transition shadow-md" title="Download the full brief as PDF">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>
-        PDF
-      </a>
       <button id="mobileNavToggle" type="button" aria-label="Toggle chapter menu" aria-expanded="false" aria-controls="mobileNavDrawer" class="md:hidden w-9 h-9 grid place-items-center rounded-lg bg-white/10 border border-white/20 hover:bg-white/20 transition">
         <svg id="iconMenu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
         <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 hidden"><path d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.29 19.71 2.88 18.29 9.17 12 2.88 5.71 4.29 4.29l6.3 6.3 6.3-6.3z"/></svg>
