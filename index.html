@@ -455,7 +455,7 @@
     </h2>
     <p class="mt-4 max-w-5xl text-lg text-slate-600">
       Business Innovators start in <strong>vibe.powerapps.com</strong> &mdash; describe an idea, ship a working app.
-      Pro Developers ship in <strong>VS Code + GitHub Copilot</strong> with full CI/CD.
+      Pro Developers ship in <strong>VS Code</strong> with an approved AI coding assistant and full CI/CD.
       In between sits the persona that breaks the old ceiling:
       the <strong>Innovative Maker</strong>, who fluidly moves between vibe.powerapps.com and VS Code &mdash;
       <em>given incredible AI superpowers, but contained and controlled by the platform.</em>
@@ -463,7 +463,7 @@
   </div>
 
   <figure class="visual mt-10 reveal">
-    <img src="images/personas.png" alt="The Innovative Maker as the cross-over persona between vibe.powerapps.com and VS Code + GitHub Copilot, with Business Innovators upstream and Pro Developers downstream — all governed by the Power Platform" />
+    <img src="images/personas.png" alt="The Innovative Maker as the cross-over persona between vibe.powerapps.com and VS Code with approved AI coding assistants, with Business Innovators upstream and Pro Developers downstream — all governed by the Power Platform" />
     <figcaption>Business Innovators ideate &middot; Innovative Makers cross over &middot; Pro Developers harden &middot; Power Platform governs every stage.</figcaption>
   </figure>
 
@@ -492,11 +492,11 @@
         <span class="text-[10px] font-semibold uppercase tracking-widest text-plum-700">Cross&#8209;Over &middot; Contained Superpowers</span>
       </div>
       <h3 class="mt-4 font-bold text-ink-800 text-lg">Innovative Maker</h3>
-      <div class="text-xs text-slate-500">vibe.powerapps.com <strong>and</strong> VS Code + GitHub Copilot</div>
+      <div class="text-xs text-slate-500">vibe.powerapps.com <strong>and</strong> VS Code + approved AI assistant</div>
       <ul class="mt-4 text-sm space-y-2">
         <li class="check">Starts in vibe.powerapps.com <em>or</em> VS Code &mdash; whichever fits the task</li>
         <li class="check">Pulls Code Apps into VS Code when vibe hits a ceiling &mdash; and keeps building from there</li>
-        <li class="check">Uses GitHub Copilot Agent Mode to extend, refactor, and harden at AI speed</li>
+        <li class="check">Uses approved agent tooling to extend, refactor, and harden at AI speed</li>
         <li class="check">Guardrails via <code class="bg-white/60 px-1 rounded text-xs">copilot-instructions.md</code> and <code class="bg-white/60 px-1 rounded text-xs">AGENTS.md</code></li>
         <li class="check"><strong>Same artifact, same Dataverse, same governance &mdash; either way</strong></li>
       </ul>
@@ -593,7 +593,7 @@
         <span class="grad-text">It is a boundary.</span>
       </h2>
       <p class="mt-5 max-w-3xl text-lg text-white/75">
-        For any organization handling PHI, this single chapter ends the conversation.
+        For any organization handling PHI, this single chapter changes the conversation.
         It's a contractual and regulatory boundary — not a preference.
       </p>
     </div>
@@ -632,6 +632,14 @@
           <li class="cross-dark">Cannot be easily relocated into a customer-controlled Microsoft cloud boundary</li>
         </ul>
       </article>
+    </div>
+
+    <div class="mt-6 glass p-5 reveal">
+      <div class="text-xs uppercase tracking-widest text-white/60 font-semibold">Scope note</div>
+      <p class="mt-2 text-sm text-white/75">
+        This boundary describes the <strong class="text-white">application platform and data layer</strong>. Coding assistants are selected separately:
+        teams handling regulated data should route prompts only through AI services their legal and security teams have approved for that workload.
+      </p>
     </div>
 
     <!-- PROOF DRAWER -->
@@ -1015,18 +1023,18 @@
   <div class="reveal">
     <span class="pill pill-light">Chapter 08 &middot; AI Flexibility</span>
     <h2 class="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight text-ink-800">
-      Bring any frontier model. <span class="grad-text-dark">Always know which one you're using.</span>
+      Bring the right frontier model. <span class="grad-text-dark">Always know which one you're using.</span>
     </h2>
     <p class="mt-4 max-w-5xl text-lg text-slate-600">
-      Coding-model leadership shifts month to month. The <strong>VS Code ecosystem</strong> &mdash;
-      GitHub Copilot for first-party Microsoft-supported models, plus Cursor, Cline, and other agent tools
-      for the broader frontier &mdash; lets developers pick the model by name and version, and swap the moment
-      a stronger one ships. With most external vibe-coding platforms, the model is opaque.
+      Coding-model leadership shifts month to month. The <strong>VS Code ecosystem</strong> lets developers use the
+      assistant route their organization approves &mdash; GitHub Copilot, Claude Code, Codex, Cursor, Cline,
+      or direct API integrations &mdash; while still building the same governed Code App on Dataverse.
+      The point is not one assistant. It is transparent routing, named models, and a platform foundation
+      that remains consistent as the AI layer changes.
     </p>
     <p class="mt-3 text-sm text-slate-500 italic">
-      Below: a cross-section of leading coding models available across the VS Code ecosystem in 2026.
-      Availability inside GitHub Copilot itself varies by model and changes over time &mdash; check the current
-      <a href="https://docs.github.com/en/copilot" target="_blank" rel="noopener" class="underline hover:text-azure-500">GitHub Copilot documentation</a> for the live list.
+      Below: a cross-section of leading coding models and assistant surfaces available across the VS Code ecosystem in 2026.
+      Availability, contractual coverage, and data-handling posture vary by route; regulated teams should validate the approved path with legal, security, and procurement.
     </p>
   </div>
 
@@ -1054,7 +1062,7 @@
       <div class="text-xs uppercase tracking-widest text-azure-500 font-semibold">GitHub</div>
       <div class="font-bold text-ink-800 mt-1">GitHub Copilot</div>
       <div class="text-xs text-slate-500 mt-1">Multi-model: Claude · GPT · Gemini</div>
-      <p class="text-xs text-slate-600 mt-3">One subscription, you choose the brain per task.</p>
+      <p class="text-xs text-slate-600 mt-3">A productive default for many workloads; confirm fit for regulated data-handling scenarios.</p>
     </div>
     <div class="card p-5 shrink-0 w-[260px]">
       <div class="text-xs uppercase tracking-widest text-azure-500 font-semibold">Cursor</div>
@@ -1090,14 +1098,43 @@
     Yesterday's leader rarely stays the leader for long &mdash; and your developers will always know which one they're running.
   </div>
 
+  <details class="mt-6 card p-6 reveal group" style="border-color:rgba(124,58,237,0.25); background:linear-gradient(160deg,#ffffff 0%,#f8fafc 55%,#ede9fe 100%);">
+    <summary class="flex items-center justify-between gap-4">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-plum-700 font-semibold">For regulated teams</div>
+        <div class="text-lg font-bold text-ink-800">Choose the assistant route that matches your data posture</div>
+      </div>
+      <div class="chev w-9 h-9 rounded-full bg-plum-600/10 text-plum-700 grid place-items-center">▾</div>
+    </summary>
+    <div class="mt-5 grid md:grid-cols-3 gap-4 text-sm">
+      <div class="ring-tile p-4">
+        <div class="font-bold text-ink-800">GitHub Copilot</div>
+        <p class="mt-2 text-slate-600">A strong default for many developer workflows. Treat it as one approved option, not the only AI path.</p>
+      </div>
+      <div class="ring-tile p-4">
+        <div class="font-bold text-ink-800">Claude Code via Azure AI Foundry</div>
+        <p class="mt-2 text-slate-600">For Claude-based agent work, route the CLI or VS Code extension to an approved Foundry-hosted endpoint where available.</p>
+      </div>
+      <div class="ring-tile p-4">
+        <div class="font-bold text-ink-800">Codex via Azure OpenAI</div>
+        <p class="mt-2 text-slate-600">For OpenAI coding agents, route through your Azure OpenAI resource using Entra ID or managed keys under your Azure controls.</p>
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-slate-600">
+      The practical pattern is simple: keep the <strong>application, data model, ALM, and governance</strong> in Code Apps + Dataverse,
+      then let legal and security approve which AI assistant endpoint can receive prompts for each workload. For PHI-adjacent scenarios,
+      confirm the applicable BAA and service scope in writing before enabling that route.
+    </p>
+  </details>
+
   <div class="grid md:grid-cols-2 gap-6 mt-10">
     <article class="card p-7 reveal" style="background:linear-gradient(160deg,#ecfeff 0%,#ffffff 60%); border-color:rgba(20,166,164,0.30);">
       <h3 class="font-bold text-ink-800 text-xl">Code Apps — Open &amp; Transparent</h3>
       <ul class="mt-4 space-y-2 text-sm">
         <li class="check"><strong>Named, versioned models</strong> — you always know what wrote your code</li>
-        <li class="check">Any model in VS Code or GitHub Copilot works here</li>
-        <li class="check">Switch per repo, per developer, per task — even per file</li>
-        <li class="check">GitHub Enterprise controls keys, models, audit, policies</li>
+        <li class="check">Approved VS Code assistants work here: Copilot, Claude Code, Codex, Cursor, Cline, or direct APIs</li>
+        <li class="check">Switch per repo, per developer, per task — based on both capability and compliance posture</li>
+        <li class="check">Enterprise controls depend on the approved route: GitHub Enterprise, Azure OpenAI, Azure AI Foundry, or other governed endpoints</li>
         <li class="check"><code class="bg-slate-100 px-1 rounded text-xs">copilot-instructions.md</code> sets guardrails across every assistant</li>
         <li class="check">New frontier model today → available within days</li>
       </ul>
